@@ -1,0 +1,1561 @@
+
+
+----------------------------------------
+checking for C compiler
+
+
+----------------------------------------
+checking for -Wl,-E switch
+
+
+----------------------------------------
+checking for gcc builtin atomic operations
+
+
+----------------------------------------
+checking for C99 variadic macros
+
+
+----------------------------------------
+checking for gcc variadic macros
+
+
+----------------------------------------
+checking for gcc builtin 64 bit byteswap
+
+
+----------------------------------------
+checking for unistd.h
+
+
+----------------------------------------
+checking for inttypes.h
+
+
+----------------------------------------
+checking for limits.h
+
+
+----------------------------------------
+checking for sys/filio.h
+
+objs/autotest.c:3:10: fatal error: 'sys/filio.h' file not found
+#include <sys/filio.h>
+         ^~~~~~~~~~~~~
+1 error generated.
+ERROR:root:compiler frontend failed to generate LLVM IR, haltingARGS:['/home/sam/Projects/emsdk/clang/tag-e1.37.22/build_tag-e1.37.22_64/bin/clang', '-target', 'asmjs-unknown-emscripten', '-D__EMSCRIPTEN_major__=1', '-D__EMSCRIPTEN_minor__=37', '-D__EMSCRIPTEN_tiny__=22', '-D_LIBCPP_ABI_VERSION=2', '-Werror=implicit-function-declaration', '-nostdinc', '-Xclang', '-nobuiltininc', '-Xclang', '-nostdsysteminc', '-Xclang', '-isystem/home/sam/Projects/emscripten/system/include/libcxx', '-Xclang', '-isystem/home/sam/Projects/emscripten/system/lib/libcxxabi/include', '-Xclang', '-isystem/home/sam/Projects/emscripten/system/include/compat', '-Xclang', '-isystem/home/sam/Projects/emscripten/system/include', '-Xclang', '-isystem/home/sam/Projects/emscripten/system/include/SSE', '-Xclang', '-isystem/home/sam/Projects/emscripten/system/include/libc', '-Xclang', '-isystem/home/sam/Projects/emscripten/system/lib/libc/musl/arch/emscripten', '-Xclang', '-isystem/home/sam/Projects/emscripten/system/local/include', 'objs/autotest.c', '-Xclang', '-isystem/home/sam/Projects/emscripten/system/include/SDL', '-emit-llvm', '-S', '-o', '/tmp/tmpTkEYMr/autotest_0.ll']
+----------
+
+
+#include <sys/filio.h>
+
+int main(void) {
+    return 0;
+}
+
+----------
+/home/sam/Projects/emscripten/emcc -o objs/autotest objs/autotest.c
+----------
+
+----------------------------------------
+checking for sys/param.h
+
+
+----------------------------------------
+checking for sys/mount.h
+
+
+----------------------------------------
+checking for sys/statvfs.h
+
+
+----------------------------------------
+checking for crypt.h
+
+
+----------------------------------------
+checking for epoll
+
+error: unresolved symbol: epoll_create
+Aborting compilation due to previous errors | undefined
+Traceback (most recent call last):
+  File "/home/sam/Projects/emscripten/emcc", line 13, in <module>
+    emcc.run()
+  File "/home/sam/Projects/emscripten/emcc.py", line 1651, in run
+    final = shared.Building.emscripten(final, append_ext=False, extra_args=extra_args)
+  File "/home/sam/Projects/emscripten/tools/shared.py", line 2020, in emscripten
+    call_emscripten(cmdline)
+  File "/home/sam/Projects/emscripten/emscripten.py", line 2298, in _main
+    temp_files.run_and_clean(lambda: main(
+  File "/home/sam/Projects/emscripten/tools/tempfiles.py", line 78, in run_and_clean
+    return func()
+  File "/home/sam/Projects/emscripten/emscripten.py", line 2303, in <lambda>
+    DEBUG=DEBUG,
+  File "/home/sam/Projects/emscripten/emscripten.py", line 2203, in main
+    temp_files=temp_files, DEBUG=DEBUG)
+  File "/home/sam/Projects/emscripten/emscripten.py", line 98, in emscript
+    glue, forwarded_data = compiler_glue(metadata, settings, libraries, compiler_engine, temp_files, DEBUG)
+  File "/home/sam/Projects/emscripten/emscripten.py", line 222, in compiler_glue
+    glue, forwarded_data = compile_settings(compiler_engine, settings, libraries, temp_files)
+  File "/home/sam/Projects/emscripten/emscripten.py", line 542, in compile_settings
+    cwd=path_from_root('src'), error_limit=300)
+  File "/home/sam/Projects/emscripten/tools/jsrun.py", line 131, in run_js
+    raise Exception('Expected the command ' + str(command) + ' to finish with return code ' + str(assert_returncode) + ', but it returned with code ' + str(proc.returncode) + ' instead! Output: ' + str(ret)[:error_limit])
+Exception: Expected the command ['node', '/home/sam/Projects/emscripten/src/compiler.js', '/tmp/tmpMe8UMT.txt', '/home/sam/Projects/emscripten/src/library_pthread_stub.js'] to finish with return code 0, but it returned with code 1 instead! Output: // The Module object: Our interface to the outside world. We import
+// and export values on it, and do the work to get that through
+// closure compiler if necessary. There are various ways Module can be used:
+// 1. Not defined. We create it here
+// 2. A function parameter, function(Module) { ..gener
+----------
+
+#include <sys/types.h>
+#include <unistd.h>
+#include <sys/epoll.h>
+
+int main(void) {
+    int efd = 0;
+                  struct epoll_event ee;
+                  ee.events = EPOLLIN|EPOLLOUT|EPOLLET;
+                  ee.data.ptr = NULL;
+                  (void) ee;
+                  efd = epoll_create(100);
+                  if (efd == -1) return 1;;
+    return 0;
+}
+
+----------
+/home/sam/Projects/emscripten/emcc -pipe -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 -o objs/autotest objs/autotest.c
+----------
+
+----------------------------------------
+checking for O_PATH
+
+
+----------------------------------------
+checking for sendfile()
+
+error: unresolved symbol: sendfile
+Aborting compilation due to previous errors | undefined
+Traceback (most recent call last):
+  File "/home/sam/Projects/emscripten/emcc", line 13, in <module>
+    emcc.run()
+  File "/home/sam/Projects/emscripten/emcc.py", line 1651, in run
+    final = shared.Building.emscripten(final, append_ext=False, extra_args=extra_args)
+  File "/home/sam/Projects/emscripten/tools/shared.py", line 2020, in emscripten
+    call_emscripten(cmdline)
+  File "/home/sam/Projects/emscripten/emscripten.py", line 2298, in _main
+    temp_files.run_and_clean(lambda: main(
+  File "/home/sam/Projects/emscripten/tools/tempfiles.py", line 78, in run_and_clean
+    return func()
+  File "/home/sam/Projects/emscripten/emscripten.py", line 2303, in <lambda>
+    DEBUG=DEBUG,
+  File "/home/sam/Projects/emscripten/emscripten.py", line 2203, in main
+    temp_files=temp_files, DEBUG=DEBUG)
+  File "/home/sam/Projects/emscripten/emscripten.py", line 98, in emscript
+    glue, forwarded_data = compiler_glue(metadata, settings, libraries, compiler_engine, temp_files, DEBUG)
+  File "/home/sam/Projects/emscripten/emscripten.py", line 222, in compiler_glue
+    glue, forwarded_data = compile_settings(compiler_engine, settings, libraries, temp_files)
+  File "/home/sam/Projects/emscripten/emscripten.py", line 542, in compile_settings
+    cwd=path_from_root('src'), error_limit=300)
+  File "/home/sam/Projects/emscripten/tools/jsrun.py", line 131, in run_js
+    raise Exception('Expected the command ' + str(command) + ' to finish with return code ' + str(assert_returncode) + ', but it returned with code ' + str(proc.returncode) + ' instead! Output: ' + str(ret)[:error_limit])
+Exception: Expected the command ['node', '/home/sam/Projects/emscripten/src/compiler.js', '/tmp/tmpbsABmI.txt', '/home/sam/Projects/emscripten/src/library_pthread_stub.js'] to finish with return code 0, but it returned with code 1 instead! Output: // The Module object: Our interface to the outside world. We import
+// and export values on it, and do the work to get that through
+// closure compiler if necessary. There are various ways Module can be used:
+// 1. Not defined. We create it here
+// 2. A function parameter, function(Module) { ..gener
+----------
+
+#include <sys/types.h>
+#include <unistd.h>
+#include <sys/sendfile.h>
+                  #include <errno.h>
+
+int main(void) {
+    int s = 0, fd = 1;
+                  ssize_t n; off_t off = 0;
+                  n = sendfile(s, fd, &off, 1);
+                  if (n == -1 && errno == ENOSYS) return 1;
+    return 0;
+}
+
+----------
+/home/sam/Projects/emscripten/emcc -pipe -D_GNU_SOURCE -o objs/autotest objs/autotest.c
+----------
+
+----------------------------------------
+checking for sendfile64()
+
+error: unresolved symbol: sendfile
+Aborting compilation due to previous errors | undefined
+Traceback (most recent call last):
+  File "/home/sam/Projects/emscripten/emcc", line 13, in <module>
+    emcc.run()
+  File "/home/sam/Projects/emscripten/emcc.py", line 1651, in run
+    final = shared.Building.emscripten(final, append_ext=False, extra_args=extra_args)
+  File "/home/sam/Projects/emscripten/tools/shared.py", line 2020, in emscripten
+    call_emscripten(cmdline)
+  File "/home/sam/Projects/emscripten/emscripten.py", line 2298, in _main
+    temp_files.run_and_clean(lambda: main(
+  File "/home/sam/Projects/emscripten/tools/tempfiles.py", line 78, in run_and_clean
+    return func()
+  File "/home/sam/Projects/emscripten/emscripten.py", line 2303, in <lambda>
+    DEBUG=DEBUG,
+  File "/home/sam/Projects/emscripten/emscripten.py", line 2203, in main
+    temp_files=temp_files, DEBUG=DEBUG)
+  File "/home/sam/Projects/emscripten/emscripten.py", line 98, in emscript
+    glue, forwarded_data = compiler_glue(metadata, settings, libraries, compiler_engine, temp_files, DEBUG)
+  File "/home/sam/Projects/emscripten/emscripten.py", line 222, in compiler_glue
+    glue, forwarded_data = compile_settings(compiler_engine, settings, libraries, temp_files)
+  File "/home/sam/Projects/emscripten/emscripten.py", line 542, in compile_settings
+    cwd=path_from_root('src'), error_limit=300)
+  File "/home/sam/Projects/emscripten/tools/jsrun.py", line 131, in run_js
+    raise Exception('Expected the command ' + str(command) + ' to finish with return code ' + str(assert_returncode) + ', but it returned with code ' + str(proc.returncode) + ' instead! Output: ' + str(ret)[:error_limit])
+Exception: Expected the command ['node', '/home/sam/Projects/emscripten/src/compiler.js', '/tmp/tmpejxoYU.txt', '/home/sam/Projects/emscripten/src/library_pthread_stub.js'] to finish with return code 0, but it returned with code 1 instead! Output: // The Module object: Our interface to the outside world. We import
+// and export values on it, and do the work to get that through
+// closure compiler if necessary. There are various ways Module can be used:
+// 1. Not defined. We create it here
+// 2. A function parameter, function(Module) { ..gener
+----------
+
+#include <sys/types.h>
+#include <unistd.h>
+#include <sys/sendfile.h>
+                  #include <errno.h>
+
+int main(void) {
+    int s = 0, fd = 1;
+                  ssize_t n; off_t off = 0;
+                  n = sendfile(s, fd, &off, 1);
+                  if (n == -1 && errno == ENOSYS) return 1;
+    return 0;
+}
+
+----------
+/home/sam/Projects/emscripten/emcc -pipe -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 -o objs/autotest objs/autotest.c
+----------
+
+----------------------------------------
+checking for sys/prctl.h
+
+
+----------------------------------------
+checking for prctl(PR_SET_DUMPABLE)
+
+error: unresolved symbol: prctl
+Aborting compilation due to previous errors | undefined
+Traceback (most recent call last):
+  File "/home/sam/Projects/emscripten/emcc", line 13, in <module>
+    emcc.run()
+  File "/home/sam/Projects/emscripten/emcc.py", line 1651, in run
+    final = shared.Building.emscripten(final, append_ext=False, extra_args=extra_args)
+  File "/home/sam/Projects/emscripten/tools/shared.py", line 2020, in emscripten
+    call_emscripten(cmdline)
+  File "/home/sam/Projects/emscripten/emscripten.py", line 2298, in _main
+    temp_files.run_and_clean(lambda: main(
+  File "/home/sam/Projects/emscripten/tools/tempfiles.py", line 78, in run_and_clean
+    return func()
+  File "/home/sam/Projects/emscripten/emscripten.py", line 2303, in <lambda>
+    DEBUG=DEBUG,
+  File "/home/sam/Projects/emscripten/emscripten.py", line 2203, in main
+    temp_files=temp_files, DEBUG=DEBUG)
+  File "/home/sam/Projects/emscripten/emscripten.py", line 98, in emscript
+    glue, forwarded_data = compiler_glue(metadata, settings, libraries, compiler_engine, temp_files, DEBUG)
+  File "/home/sam/Projects/emscripten/emscripten.py", line 222, in compiler_glue
+    glue, forwarded_data = compile_settings(compiler_engine, settings, libraries, temp_files)
+  File "/home/sam/Projects/emscripten/emscripten.py", line 542, in compile_settings
+    cwd=path_from_root('src'), error_limit=300)
+  File "/home/sam/Projects/emscripten/tools/jsrun.py", line 131, in run_js
+    raise Exception('Expected the command ' + str(command) + ' to finish with return code ' + str(assert_returncode) + ', but it returned with code ' + str(proc.returncode) + ' instead! Output: ' + str(ret)[:error_limit])
+Exception: Expected the command ['node', '/home/sam/Projects/emscripten/src/compiler.js', '/tmp/tmppdY5ju.txt', '/home/sam/Projects/emscripten/src/library_pthread_stub.js'] to finish with return code 0, but it returned with code 1 instead! Output: // The Module object: Our interface to the outside world. We import
+// and export values on it, and do the work to get that through
+// closure compiler if necessary. There are various ways Module can be used:
+// 1. Not defined. We create it here
+// 2. A function parameter, function(Module) { ..gener
+----------
+
+#include <sys/types.h>
+#include <unistd.h>
+#include <sys/prctl.h>
+
+int main(void) {
+    if (prctl(PR_SET_DUMPABLE, 1, 0, 0, 0) == -1) return 1;
+    return 0;
+}
+
+----------
+/home/sam/Projects/emscripten/emcc -pipe -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 -o objs/autotest objs/autotest.c
+----------
+
+----------------------------------------
+checking for sched_setaffinity()
+
+objs/autotest.c:8:19: error: implicitly declaring library function 'memset' with type 'void *(void *, int, unsigned int)' [-Werror,-Wimplicit-function-declaration]
+                  CPU_ZERO(&mask);
+                  ^
+/home/sam/Projects/emscripten/system/include/libc/sched.h:127:23: note: expanded from macro 'CPU_ZERO'
+#define CPU_ZERO(set) CPU_ZERO_S(sizeof(cpu_set_t),set)
+                      ^
+/home/sam/Projects/emscripten/system/include/libc/sched.h:110:30: note: expanded from macro 'CPU_ZERO_S'
+#define CPU_ZERO_S(size,set) memset(set,0,size)
+                             ^
+objs/autotest.c:8:19: note: include the header <string.h> or explicitly provide a declaration for 'memset'
+/home/sam/Projects/emscripten/system/include/libc/sched.h:127:23: note: expanded from macro 'CPU_ZERO'
+#define CPU_ZERO(set) CPU_ZERO_S(sizeof(cpu_set_t),set)
+                      ^
+/home/sam/Projects/emscripten/system/include/libc/sched.h:110:30: note: expanded from macro 'CPU_ZERO_S'
+#define CPU_ZERO_S(size,set) memset(set,0,size)
+                             ^
+1 error generated.
+ERROR:root:compiler frontend failed to generate LLVM IR, haltingARGS:['/home/sam/Projects/emsdk/clang/tag-e1.37.22/build_tag-e1.37.22_64/bin/clang', '-target', 'asmjs-unknown-emscripten', '-D__EMSCRIPTEN_major__=1', '-D__EMSCRIPTEN_minor__=37', '-D__EMSCRIPTEN_tiny__=22', '-D_LIBCPP_ABI_VERSION=2', '-Werror=implicit-function-declaration', '-nostdinc', '-Xclang', '-nobuiltininc', '-Xclang', '-nostdsysteminc', '-Xclang', '-isystem/home/sam/Projects/emscripten/system/include/libcxx', '-Xclang', '-isystem/home/sam/Projects/emscripten/system/lib/libcxxabi/include', '-Xclang', '-isystem/home/sam/Projects/emscripten/system/include/compat', '-Xclang', '-isystem/home/sam/Projects/emscripten/system/include', '-Xclang', '-isystem/home/sam/Projects/emscripten/system/include/SSE', '-Xclang', '-isystem/home/sam/Projects/emscripten/system/include/libc', '-Xclang', '-isystem/home/sam/Projects/emscripten/system/lib/libc/musl/arch/emscripten', '-Xclang', '-isystem/home/sam/Projects/emscripten/system/local/include', '-pipe', '-D_GNU_SOURCE', '-D_FILE_OFFSET_BITS=64', 'objs/autotest.c', '-Xclang', '-isystem/home/sam/Projects/emscripten/system/include/SDL', '-emit-llvm', '-S', '-o', '/tmp/tmpfixVDW/autotest_0.ll']
+----------
+
+#include <sys/types.h>
+#include <unistd.h>
+#include <sched.h>
+
+int main(void) {
+    cpu_set_t mask;
+                  CPU_ZERO(&mask);
+                  sched_setaffinity(0, sizeof(cpu_set_t), &mask);
+    return 0;
+}
+
+----------
+/home/sam/Projects/emscripten/emcc -pipe -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 -o objs/autotest objs/autotest.c
+----------
+
+----------------------------------------
+checking for crypt_r()
+
+WARNING:root:emcc: cannot find library "crypt"
+
+----------------------------------------
+checking for sys/vfs.h
+
+
+----------------------------------------
+checking for poll()
+
+
+----------------------------------------
+checking for /dev/poll
+
+objs/autotest.c:4:10: fatal error: 'sys/devpoll.h' file not found
+#include <sys/devpoll.h>
+         ^~~~~~~~~~~~~~~
+1 error generated.
+ERROR:root:compiler frontend failed to generate LLVM IR, haltingARGS:['/home/sam/Projects/emsdk/clang/tag-e1.37.22/build_tag-e1.37.22_64/bin/clang', '-target', 'asmjs-unknown-emscripten', '-D__EMSCRIPTEN_major__=1', '-D__EMSCRIPTEN_minor__=37', '-D__EMSCRIPTEN_tiny__=22', '-D_LIBCPP_ABI_VERSION=2', '-Werror=implicit-function-declaration', '-nostdinc', '-Xclang', '-nobuiltininc', '-Xclang', '-nostdsysteminc', '-Xclang', '-isystem/home/sam/Projects/emscripten/system/include/libcxx', '-Xclang', '-isystem/home/sam/Projects/emscripten/system/lib/libcxxabi/include', '-Xclang', '-isystem/home/sam/Projects/emscripten/system/include/compat', '-Xclang', '-isystem/home/sam/Projects/emscripten/system/include', '-Xclang', '-isystem/home/sam/Projects/emscripten/system/include/SSE', '-Xclang', '-isystem/home/sam/Projects/emscripten/system/include/libc', '-Xclang', '-isystem/home/sam/Projects/emscripten/system/lib/libc/musl/arch/emscripten', '-Xclang', '-isystem/home/sam/Projects/emscripten/system/local/include', '-pipe', '-D_GNU_SOURCE', '-D_FILE_OFFSET_BITS=64', 'objs/autotest.c', '-Xclang', '-isystem/home/sam/Projects/emscripten/system/include/SDL', '-emit-llvm', '-S', '-o', '/tmp/tmpNcuivA/autotest_0.ll']
+----------
+
+#include <sys/types.h>
+#include <unistd.h>
+#include <sys/devpoll.h>
+
+int main(void) {
+    int  n, dp; struct dvpoll  dvp;
+                  dp = 0;
+                  dvp.dp_fds = NULL;
+                  dvp.dp_nfds = 0;
+                  dvp.dp_timeout = 0;
+                  n = ioctl(dp, DP_POLL, &dvp);
+                  if (n == -1) return 1;
+    return 0;
+}
+
+----------
+/home/sam/Projects/emscripten/emcc -pipe -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 -o objs/autotest objs/autotest.c
+----------
+
+----------------------------------------
+checking for kqueue
+
+objs/autotest.c:4:10: fatal error: 'sys/event.h' file not found
+#include <sys/event.h>
+         ^~~~~~~~~~~~~
+1 error generated.
+ERROR:root:compiler frontend failed to generate LLVM IR, haltingARGS:['/home/sam/Projects/emsdk/clang/tag-e1.37.22/build_tag-e1.37.22_64/bin/clang', '-target', 'asmjs-unknown-emscripten', '-D__EMSCRIPTEN_major__=1', '-D__EMSCRIPTEN_minor__=37', '-D__EMSCRIPTEN_tiny__=22', '-D_LIBCPP_ABI_VERSION=2', '-Werror=implicit-function-declaration', '-nostdinc', '-Xclang', '-nobuiltininc', '-Xclang', '-nostdsysteminc', '-Xclang', '-isystem/home/sam/Projects/emscripten/system/include/libcxx', '-Xclang', '-isystem/home/sam/Projects/emscripten/system/lib/libcxxabi/include', '-Xclang', '-isystem/home/sam/Projects/emscripten/system/include/compat', '-Xclang', '-isystem/home/sam/Projects/emscripten/system/include', '-Xclang', '-isystem/home/sam/Projects/emscripten/system/include/SSE', '-Xclang', '-isystem/home/sam/Projects/emscripten/system/include/libc', '-Xclang', '-isystem/home/sam/Projects/emscripten/system/lib/libc/musl/arch/emscripten', '-Xclang', '-isystem/home/sam/Projects/emscripten/system/local/include', '-pipe', '-D_GNU_SOURCE', '-D_FILE_OFFSET_BITS=64', 'objs/autotest.c', '-Xclang', '-isystem/home/sam/Projects/emscripten/system/include/SDL', '-emit-llvm', '-S', '-o', '/tmp/tmpQekRdN/autotest_0.ll']
+----------
+
+#include <sys/types.h>
+#include <unistd.h>
+#include <sys/event.h>
+
+int main(void) {
+    (void) kqueue();
+    return 0;
+}
+
+----------
+/home/sam/Projects/emscripten/emcc -pipe -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 -o objs/autotest objs/autotest.c
+----------
+
+----------------------------------------
+checking for crypt()
+
+
+----------------------------------------
+checking for F_READAHEAD
+
+objs/autotest.c:7:14: error: use of undeclared identifier 'F_READAHEAD'
+    fcntl(0, F_READAHEAD, 1);;
+             ^
+1 error generated.
+ERROR:root:compiler frontend failed to generate LLVM IR, haltingARGS:['/home/sam/Projects/emsdk/clang/tag-e1.37.22/build_tag-e1.37.22_64/bin/clang', '-target', 'asmjs-unknown-emscripten', '-D__EMSCRIPTEN_major__=1', '-D__EMSCRIPTEN_minor__=37', '-D__EMSCRIPTEN_tiny__=22', '-D_LIBCPP_ABI_VERSION=2', '-Werror=implicit-function-declaration', '-nostdinc', '-Xclang', '-nobuiltininc', '-Xclang', '-nostdsysteminc', '-Xclang', '-isystem/home/sam/Projects/emscripten/system/include/libcxx', '-Xclang', '-isystem/home/sam/Projects/emscripten/system/lib/libcxxabi/include', '-Xclang', '-isystem/home/sam/Projects/emscripten/system/include/compat', '-Xclang', '-isystem/home/sam/Projects/emscripten/system/include', '-Xclang', '-isystem/home/sam/Projects/emscripten/system/include/SSE', '-Xclang', '-isystem/home/sam/Projects/emscripten/system/include/libc', '-Xclang', '-isystem/home/sam/Projects/emscripten/system/lib/libc/musl/arch/emscripten', '-Xclang', '-isystem/home/sam/Projects/emscripten/system/local/include', '-pipe', '-D_GNU_SOURCE', '-D_FILE_OFFSET_BITS=64', 'objs/autotest.c', '-Xclang', '-isystem/home/sam/Projects/emscripten/system/include/SDL', '-emit-llvm', '-S', '-o', '/tmp/tmpoMONrd/autotest_0.ll']
+----------
+
+#include <sys/types.h>
+#include <unistd.h>
+#include <fcntl.h>
+
+int main(void) {
+    fcntl(0, F_READAHEAD, 1);;
+    return 0;
+}
+
+----------
+/home/sam/Projects/emscripten/emcc -pipe -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 -o objs/autotest objs/autotest.c
+----------
+
+----------------------------------------
+checking for posix_fadvise()
+
+
+----------------------------------------
+checking for O_DIRECT
+
+
+----------------------------------------
+checking for F_NOCACHE
+
+objs/autotest.c:7:14: error: use of undeclared identifier 'F_NOCACHE'
+    fcntl(0, F_NOCACHE, 1);;
+             ^
+1 error generated.
+ERROR:root:compiler frontend failed to generate LLVM IR, haltingARGS:['/home/sam/Projects/emsdk/clang/tag-e1.37.22/build_tag-e1.37.22_64/bin/clang', '-target', 'asmjs-unknown-emscripten', '-D__EMSCRIPTEN_major__=1', '-D__EMSCRIPTEN_minor__=37', '-D__EMSCRIPTEN_tiny__=22', '-D_LIBCPP_ABI_VERSION=2', '-Werror=implicit-function-declaration', '-nostdinc', '-Xclang', '-nobuiltininc', '-Xclang', '-nostdsysteminc', '-Xclang', '-isystem/home/sam/Projects/emscripten/system/include/libcxx', '-Xclang', '-isystem/home/sam/Projects/emscripten/system/lib/libcxxabi/include', '-Xclang', '-isystem/home/sam/Projects/emscripten/system/include/compat', '-Xclang', '-isystem/home/sam/Projects/emscripten/system/include', '-Xclang', '-isystem/home/sam/Projects/emscripten/system/include/SSE', '-Xclang', '-isystem/home/sam/Projects/emscripten/system/include/libc', '-Xclang', '-isystem/home/sam/Projects/emscripten/system/lib/libc/musl/arch/emscripten', '-Xclang', '-isystem/home/sam/Projects/emscripten/system/local/include', '-pipe', '-D_GNU_SOURCE', '-D_FILE_OFFSET_BITS=64', 'objs/autotest.c', '-Xclang', '-isystem/home/sam/Projects/emscripten/system/include/SDL', '-emit-llvm', '-S', '-o', '/tmp/tmp5QTOIT/autotest_0.ll']
+----------
+
+#include <sys/types.h>
+#include <unistd.h>
+#include <fcntl.h>
+
+int main(void) {
+    fcntl(0, F_NOCACHE, 1);;
+    return 0;
+}
+
+----------
+/home/sam/Projects/emscripten/emcc -pipe -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 -o objs/autotest objs/autotest.c
+----------
+
+----------------------------------------
+checking for directio()
+
+In file included from objs/autotest.c:5:
+/home/sam/Projects/emscripten/system/include/libc/sys/fcntl.h:1:2: warning: redirecting incorrect #include <sys/fcntl.h> to <fcntl.h> [-W#warnings]
+#warning redirecting incorrect #include <sys/fcntl.h> to <fcntl.h>
+ ^
+objs/autotest.c:8:5: error: implicit declaration of function 'directio' is invalid in C99 [-Werror,-Wimplicit-function-declaration]
+    directio(0, DIRECTIO_ON);;
+    ^
+objs/autotest.c:8:17: error: use of undeclared identifier 'DIRECTIO_ON'
+    directio(0, DIRECTIO_ON);;
+                ^
+1 warning and 2 errors generated.
+ERROR:root:compiler frontend failed to generate LLVM IR, haltingARGS:['/home/sam/Projects/emsdk/clang/tag-e1.37.22/build_tag-e1.37.22_64/bin/clang', '-target', 'asmjs-unknown-emscripten', '-D__EMSCRIPTEN_major__=1', '-D__EMSCRIPTEN_minor__=37', '-D__EMSCRIPTEN_tiny__=22', '-D_LIBCPP_ABI_VERSION=2', '-Werror=implicit-function-declaration', '-nostdinc', '-Xclang', '-nobuiltininc', '-Xclang', '-nostdsysteminc', '-Xclang', '-isystem/home/sam/Projects/emscripten/system/include/libcxx', '-Xclang', '-isystem/home/sam/Projects/emscripten/system/lib/libcxxabi/include', '-Xclang', '-isystem/home/sam/Projects/emscripten/system/include/compat', '-Xclang', '-isystem/home/sam/Projects/emscripten/system/include', '-Xclang', '-isystem/home/sam/Projects/emscripten/system/include/SSE', '-Xclang', '-isystem/home/sam/Projects/emscripten/system/include/libc', '-Xclang', '-isystem/home/sam/Projects/emscripten/system/lib/libc/musl/arch/emscripten', '-Xclang', '-isystem/home/sam/Projects/emscripten/system/local/include', '-pipe', '-D_GNU_SOURCE', '-D_FILE_OFFSET_BITS=64', 'objs/autotest.c', '-Xclang', '-isystem/home/sam/Projects/emscripten/system/include/SDL', '-emit-llvm', '-S', '-o', '/tmp/tmpcRxVdQ/autotest_0.ll']
+----------
+
+#include <sys/types.h>
+#include <unistd.h>
+#include <sys/types.h>
+                  #include <sys/fcntl.h>
+
+int main(void) {
+    directio(0, DIRECTIO_ON);;
+    return 0;
+}
+
+----------
+/home/sam/Projects/emscripten/emcc -pipe -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 -o objs/autotest objs/autotest.c
+----------
+
+----------------------------------------
+checking for statfs()
+
+
+----------------------------------------
+checking for statvfs()
+
+
+----------------------------------------
+checking for dlopen()
+
+error: unresolved symbol: $FS
+Aborting compilation due to previous errors | undefined
+Traceback (most recent call last):
+  File "/home/sam/Projects/emscripten/emcc", line 13, in <module>
+    emcc.run()
+  File "/home/sam/Projects/emscripten/emcc.py", line 1651, in run
+    final = shared.Building.emscripten(final, append_ext=False, extra_args=extra_args)
+  File "/home/sam/Projects/emscripten/tools/shared.py", line 2020, in emscripten
+    call_emscripten(cmdline)
+  File "/home/sam/Projects/emscripten/emscripten.py", line 2298, in _main
+    temp_files.run_and_clean(lambda: main(
+  File "/home/sam/Projects/emscripten/tools/tempfiles.py", line 78, in run_and_clean
+    return func()
+  File "/home/sam/Projects/emscripten/emscripten.py", line 2303, in <lambda>
+    DEBUG=DEBUG,
+  File "/home/sam/Projects/emscripten/emscripten.py", line 2203, in main
+    temp_files=temp_files, DEBUG=DEBUG)
+  File "/home/sam/Projects/emscripten/emscripten.py", line 98, in emscript
+    glue, forwarded_data = compiler_glue(metadata, settings, libraries, compiler_engine, temp_files, DEBUG)
+  File "/home/sam/Projects/emscripten/emscripten.py", line 222, in compiler_glue
+    glue, forwarded_data = compile_settings(compiler_engine, settings, libraries, temp_files)
+  File "/home/sam/Projects/emscripten/emscripten.py", line 542, in compile_settings
+    cwd=path_from_root('src'), error_limit=300)
+  File "/home/sam/Projects/emscripten/tools/jsrun.py", line 131, in run_js
+    raise Exception('Expected the command ' + str(command) + ' to finish with return code ' + str(assert_returncode) + ', but it returned with code ' + str(proc.returncode) + ' instead! Output: ' + str(ret)[:error_limit])
+Exception: Expected the command ['node', '/home/sam/Projects/emscripten/src/compiler.js', '/tmp/tmp0zNifH.txt', '/home/sam/Projects/emscripten/src/library_pthread_stub.js'] to finish with return code 0, but it returned with code 1 instead! Output: // The Module object: Our interface to the outside world. We import
+// and export values on it, and do the work to get that through
+// closure compiler if necessary. There are various ways Module can be used:
+// 1. Not defined. We create it here
+// 2. A function parameter, function(Module) { ..gener
+----------
+
+#include <sys/types.h>
+#include <unistd.h>
+#include <dlfcn.h>
+
+int main(void) {
+    dlopen(NULL, RTLD_NOW | RTLD_GLOBAL); dlsym(NULL, "");
+    return 0;
+}
+
+----------
+/home/sam/Projects/emscripten/emcc -pipe -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 -o objs/autotest objs/autotest.c
+----------
+
+----------------------------------------
+checking for dlopen() in libdl
+
+error: unresolved symbol: $FS
+Aborting compilation due to previous errors | undefined
+Traceback (most recent call last):
+  File "/home/sam/Projects/emscripten/emcc", line 13, in <module>
+    emcc.run()
+  File "/home/sam/Projects/emscripten/emcc.py", line 1651, in run
+    final = shared.Building.emscripten(final, append_ext=False, extra_args=extra_args)
+  File "/home/sam/Projects/emscripten/tools/shared.py", line 2020, in emscripten
+    call_emscripten(cmdline)
+  File "/home/sam/Projects/emscripten/emscripten.py", line 2298, in _main
+    temp_files.run_and_clean(lambda: main(
+  File "/home/sam/Projects/emscripten/tools/tempfiles.py", line 78, in run_and_clean
+    return func()
+  File "/home/sam/Projects/emscripten/emscripten.py", line 2303, in <lambda>
+    DEBUG=DEBUG,
+  File "/home/sam/Projects/emscripten/emscripten.py", line 2203, in main
+    temp_files=temp_files, DEBUG=DEBUG)
+  File "/home/sam/Projects/emscripten/emscripten.py", line 98, in emscript
+    glue, forwarded_data = compiler_glue(metadata, settings, libraries, compiler_engine, temp_files, DEBUG)
+  File "/home/sam/Projects/emscripten/emscripten.py", line 222, in compiler_glue
+    glue, forwarded_data = compile_settings(compiler_engine, settings, libraries, temp_files)
+  File "/home/sam/Projects/emscripten/emscripten.py", line 542, in compile_settings
+    cwd=path_from_root('src'), error_limit=300)
+  File "/home/sam/Projects/emscripten/tools/jsrun.py", line 131, in run_js
+    raise Exception('Expected the command ' + str(command) + ' to finish with return code ' + str(assert_returncode) + ', but it returned with code ' + str(proc.returncode) + ' instead! Output: ' + str(ret)[:error_limit])
+Exception: Expected the command ['node', '/home/sam/Projects/emscripten/src/compiler.js', '/tmp/tmpwDbkpQ.txt', '/home/sam/Projects/emscripten/src/library_pthread_stub.js'] to finish with return code 0, but it returned with code 1 instead! Output: // The Module object: Our interface to the outside world. We import
+// and export values on it, and do the work to get that through
+// closure compiler if necessary. There are various ways Module can be used:
+// 1. Not defined. We create it here
+// 2. A function parameter, function(Module) { ..gener
+----------
+
+#include <sys/types.h>
+#include <unistd.h>
+#include <dlfcn.h>
+
+int main(void) {
+    dlopen(NULL, RTLD_NOW | RTLD_GLOBAL); dlsym(NULL, "");
+    return 0;
+}
+
+----------
+/home/sam/Projects/emscripten/emcc -pipe -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 -o objs/autotest objs/autotest.c -ldl
+----------
+
+----------------------------------------
+checking for sched_yield()
+
+
+----------------------------------------
+checking for SO_SETFIB
+
+objs/autotest.c:7:31: error: use of undeclared identifier 'SO_SETFIB'
+    setsockopt(0, SOL_SOCKET, SO_SETFIB, NULL, 0);
+                              ^
+1 error generated.
+ERROR:root:compiler frontend failed to generate LLVM IR, haltingARGS:['/home/sam/Projects/emsdk/clang/tag-e1.37.22/build_tag-e1.37.22_64/bin/clang', '-target', 'asmjs-unknown-emscripten', '-D__EMSCRIPTEN_major__=1', '-D__EMSCRIPTEN_minor__=37', '-D__EMSCRIPTEN_tiny__=22', '-D_LIBCPP_ABI_VERSION=2', '-Werror=implicit-function-declaration', '-nostdinc', '-Xclang', '-nobuiltininc', '-Xclang', '-nostdsysteminc', '-Xclang', '-isystem/home/sam/Projects/emscripten/system/include/libcxx', '-Xclang', '-isystem/home/sam/Projects/emscripten/system/lib/libcxxabi/include', '-Xclang', '-isystem/home/sam/Projects/emscripten/system/include/compat', '-Xclang', '-isystem/home/sam/Projects/emscripten/system/include', '-Xclang', '-isystem/home/sam/Projects/emscripten/system/include/SSE', '-Xclang', '-isystem/home/sam/Projects/emscripten/system/include/libc', '-Xclang', '-isystem/home/sam/Projects/emscripten/system/lib/libc/musl/arch/emscripten', '-Xclang', '-isystem/home/sam/Projects/emscripten/system/local/include', '-pipe', '-D_GNU_SOURCE', '-D_FILE_OFFSET_BITS=64', 'objs/autotest.c', '-Xclang', '-isystem/home/sam/Projects/emscripten/system/include/SDL', '-emit-llvm', '-S', '-o', '/tmp/tmpDqzOs5/autotest_0.ll']
+----------
+
+#include <sys/types.h>
+#include <unistd.h>
+#include <sys/socket.h>
+
+int main(void) {
+    setsockopt(0, SOL_SOCKET, SO_SETFIB, NULL, 0);
+    return 0;
+}
+
+----------
+/home/sam/Projects/emscripten/emcc -pipe -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 -o objs/autotest objs/autotest.c
+----------
+
+----------------------------------------
+checking for SO_REUSEPORT
+
+error: unresolved symbol: htons
+Aborting compilation due to previous errors | undefined
+Traceback (most recent call last):
+  File "/home/sam/Projects/emscripten/emcc", line 13, in <module>
+    emcc.run()
+  File "/home/sam/Projects/emscripten/emcc.py", line 1651, in run
+    final = shared.Building.emscripten(final, append_ext=False, extra_args=extra_args)
+  File "/home/sam/Projects/emscripten/tools/shared.py", line 2020, in emscripten
+    call_emscripten(cmdline)
+  File "/home/sam/Projects/emscripten/emscripten.py", line 2298, in _main
+    temp_files.run_and_clean(lambda: main(
+  File "/home/sam/Projects/emscripten/tools/tempfiles.py", line 78, in run_and_clean
+    return func()
+  File "/home/sam/Projects/emscripten/emscripten.py", line 2303, in <lambda>
+    DEBUG=DEBUG,
+  File "/home/sam/Projects/emscripten/emscripten.py", line 2203, in main
+    temp_files=temp_files, DEBUG=DEBUG)
+  File "/home/sam/Projects/emscripten/emscripten.py", line 98, in emscript
+    glue, forwarded_data = compiler_glue(metadata, settings, libraries, compiler_engine, temp_files, DEBUG)
+  File "/home/sam/Projects/emscripten/emscripten.py", line 222, in compiler_glue
+    glue, forwarded_data = compile_settings(compiler_engine, settings, libraries, temp_files)
+  File "/home/sam/Projects/emscripten/emscripten.py", line 542, in compile_settings
+    cwd=path_from_root('src'), error_limit=300)
+  File "/home/sam/Projects/emscripten/tools/jsrun.py", line 131, in run_js
+    raise Exception('Expected the command ' + str(command) + ' to finish with return code ' + str(assert_returncode) + ', but it returned with code ' + str(proc.returncode) + ' instead! Output: ' + str(ret)[:error_limit])
+Exception: Expected the command ['node', '/home/sam/Projects/emscripten/src/compiler.js', '/tmp/tmp9tvbd7.txt', '/home/sam/Projects/emscripten/src/library_pthread_stub.js'] to finish with return code 0, but it returned with code 1 instead! Output: // The Module object: Our interface to the outside world. We import
+// and export values on it, and do the work to get that through
+// closure compiler if necessary. There are various ways Module can be used:
+// 1. Not defined. We create it here
+// 2. A function parameter, function(Module) { ..gener
+----------
+
+#include <sys/types.h>
+#include <unistd.h>
+#include <sys/socket.h>
+
+int main(void) {
+    setsockopt(0, SOL_SOCKET, SO_REUSEPORT, NULL, 0);
+    return 0;
+}
+
+----------
+/home/sam/Projects/emscripten/emcc -pipe -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 -o objs/autotest objs/autotest.c
+----------
+
+----------------------------------------
+checking for SO_ACCEPTFILTER
+
+objs/autotest.c:7:31: error: use of undeclared identifier 'SO_ACCEPTFILTER'
+    setsockopt(0, SOL_SOCKET, SO_ACCEPTFILTER, NULL, 0);
+                              ^
+1 error generated.
+ERROR:root:compiler frontend failed to generate LLVM IR, haltingARGS:['/home/sam/Projects/emsdk/clang/tag-e1.37.22/build_tag-e1.37.22_64/bin/clang', '-target', 'asmjs-unknown-emscripten', '-D__EMSCRIPTEN_major__=1', '-D__EMSCRIPTEN_minor__=37', '-D__EMSCRIPTEN_tiny__=22', '-D_LIBCPP_ABI_VERSION=2', '-Werror=implicit-function-declaration', '-nostdinc', '-Xclang', '-nobuiltininc', '-Xclang', '-nostdsysteminc', '-Xclang', '-isystem/home/sam/Projects/emscripten/system/include/libcxx', '-Xclang', '-isystem/home/sam/Projects/emscripten/system/lib/libcxxabi/include', '-Xclang', '-isystem/home/sam/Projects/emscripten/system/include/compat', '-Xclang', '-isystem/home/sam/Projects/emscripten/system/include', '-Xclang', '-isystem/home/sam/Projects/emscripten/system/include/SSE', '-Xclang', '-isystem/home/sam/Projects/emscripten/system/include/libc', '-Xclang', '-isystem/home/sam/Projects/emscripten/system/lib/libc/musl/arch/emscripten', '-Xclang', '-isystem/home/sam/Projects/emscripten/system/local/include', '-pipe', '-D_GNU_SOURCE', '-D_FILE_OFFSET_BITS=64', 'objs/autotest.c', '-Xclang', '-isystem/home/sam/Projects/emscripten/system/include/SDL', '-emit-llvm', '-S', '-o', '/tmp/tmpIVnKWV/autotest_0.ll']
+----------
+
+#include <sys/types.h>
+#include <unistd.h>
+#include <sys/socket.h>
+
+int main(void) {
+    setsockopt(0, SOL_SOCKET, SO_ACCEPTFILTER, NULL, 0);
+    return 0;
+}
+
+----------
+/home/sam/Projects/emscripten/emcc -pipe -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 -o objs/autotest objs/autotest.c
+----------
+
+----------------------------------------
+checking for SO_BINDANY
+
+objs/autotest.c:7:31: error: use of undeclared identifier 'SO_BINDANY'
+    setsockopt(0, SOL_SOCKET, SO_BINDANY, NULL, 0);
+                              ^
+1 error generated.
+ERROR:root:compiler frontend failed to generate LLVM IR, haltingARGS:['/home/sam/Projects/emsdk/clang/tag-e1.37.22/build_tag-e1.37.22_64/bin/clang', '-target', 'asmjs-unknown-emscripten', '-D__EMSCRIPTEN_major__=1', '-D__EMSCRIPTEN_minor__=37', '-D__EMSCRIPTEN_tiny__=22', '-D_LIBCPP_ABI_VERSION=2', '-Werror=implicit-function-declaration', '-nostdinc', '-Xclang', '-nobuiltininc', '-Xclang', '-nostdsysteminc', '-Xclang', '-isystem/home/sam/Projects/emscripten/system/include/libcxx', '-Xclang', '-isystem/home/sam/Projects/emscripten/system/lib/libcxxabi/include', '-Xclang', '-isystem/home/sam/Projects/emscripten/system/include/compat', '-Xclang', '-isystem/home/sam/Projects/emscripten/system/include', '-Xclang', '-isystem/home/sam/Projects/emscripten/system/include/SSE', '-Xclang', '-isystem/home/sam/Projects/emscripten/system/include/libc', '-Xclang', '-isystem/home/sam/Projects/emscripten/system/lib/libc/musl/arch/emscripten', '-Xclang', '-isystem/home/sam/Projects/emscripten/system/local/include', '-pipe', '-D_GNU_SOURCE', '-D_FILE_OFFSET_BITS=64', 'objs/autotest.c', '-Xclang', '-isystem/home/sam/Projects/emscripten/system/include/SDL', '-emit-llvm', '-S', '-o', '/tmp/tmp9cWVHb/autotest_0.ll']
+----------
+
+#include <sys/types.h>
+#include <unistd.h>
+#include <sys/socket.h>
+
+int main(void) {
+    setsockopt(0, SOL_SOCKET, SO_BINDANY, NULL, 0);
+    return 0;
+}
+
+----------
+/home/sam/Projects/emscripten/emcc -pipe -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 -o objs/autotest objs/autotest.c
+----------
+
+----------------------------------------
+checking for IP_BIND_ADDRESS_NO_PORT
+
+error: unresolved symbol: htons
+Aborting compilation due to previous errors | undefined
+Traceback (most recent call last):
+  File "/home/sam/Projects/emscripten/emcc", line 13, in <module>
+    emcc.run()
+  File "/home/sam/Projects/emscripten/emcc.py", line 1651, in run
+    final = shared.Building.emscripten(final, append_ext=False, extra_args=extra_args)
+  File "/home/sam/Projects/emscripten/tools/shared.py", line 2020, in emscripten
+    call_emscripten(cmdline)
+  File "/home/sam/Projects/emscripten/emscripten.py", line 2298, in _main
+    temp_files.run_and_clean(lambda: main(
+  File "/home/sam/Projects/emscripten/tools/tempfiles.py", line 78, in run_and_clean
+    return func()
+  File "/home/sam/Projects/emscripten/emscripten.py", line 2303, in <lambda>
+    DEBUG=DEBUG,
+  File "/home/sam/Projects/emscripten/emscripten.py", line 2203, in main
+    temp_files=temp_files, DEBUG=DEBUG)
+  File "/home/sam/Projects/emscripten/emscripten.py", line 98, in emscript
+    glue, forwarded_data = compiler_glue(metadata, settings, libraries, compiler_engine, temp_files, DEBUG)
+  File "/home/sam/Projects/emscripten/emscripten.py", line 222, in compiler_glue
+    glue, forwarded_data = compile_settings(compiler_engine, settings, libraries, temp_files)
+  File "/home/sam/Projects/emscripten/emscripten.py", line 542, in compile_settings
+    cwd=path_from_root('src'), error_limit=300)
+  File "/home/sam/Projects/emscripten/tools/jsrun.py", line 131, in run_js
+    raise Exception('Expected the command ' + str(command) + ' to finish with return code ' + str(assert_returncode) + ', but it returned with code ' + str(proc.returncode) + ' instead! Output: ' + str(ret)[:error_limit])
+Exception: Expected the command ['node', '/home/sam/Projects/emscripten/src/compiler.js', '/tmp/tmpFWlVSZ.txt', '/home/sam/Projects/emscripten/src/library_pthread_stub.js'] to finish with return code 0, but it returned with code 1 instead! Output: // The Module object: Our interface to the outside world. We import
+// and export values on it, and do the work to get that through
+// closure compiler if necessary. There are various ways Module can be used:
+// 1. Not defined. We create it here
+// 2. A function parameter, function(Module) { ..gener
+----------
+
+#include <sys/types.h>
+#include <unistd.h>
+#include <sys/socket.h>
+                  #include <netinet/in.h>
+
+int main(void) {
+    setsockopt(0, IPPROTO_IP, IP_BIND_ADDRESS_NO_PORT, NULL, 0);
+    return 0;
+}
+
+----------
+/home/sam/Projects/emscripten/emcc -pipe -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 -o objs/autotest objs/autotest.c
+----------
+
+----------------------------------------
+checking for IP_TRANSPARENT
+
+error: unresolved symbol: htons
+Aborting compilation due to previous errors | undefined
+Traceback (most recent call last):
+  File "/home/sam/Projects/emscripten/emcc", line 13, in <module>
+    emcc.run()
+  File "/home/sam/Projects/emscripten/emcc.py", line 1651, in run
+    final = shared.Building.emscripten(final, append_ext=False, extra_args=extra_args)
+  File "/home/sam/Projects/emscripten/tools/shared.py", line 2020, in emscripten
+    call_emscripten(cmdline)
+  File "/home/sam/Projects/emscripten/emscripten.py", line 2298, in _main
+    temp_files.run_and_clean(lambda: main(
+  File "/home/sam/Projects/emscripten/tools/tempfiles.py", line 78, in run_and_clean
+    return func()
+  File "/home/sam/Projects/emscripten/emscripten.py", line 2303, in <lambda>
+    DEBUG=DEBUG,
+  File "/home/sam/Projects/emscripten/emscripten.py", line 2203, in main
+    temp_files=temp_files, DEBUG=DEBUG)
+  File "/home/sam/Projects/emscripten/emscripten.py", line 98, in emscript
+    glue, forwarded_data = compiler_glue(metadata, settings, libraries, compiler_engine, temp_files, DEBUG)
+  File "/home/sam/Projects/emscripten/emscripten.py", line 222, in compiler_glue
+    glue, forwarded_data = compile_settings(compiler_engine, settings, libraries, temp_files)
+  File "/home/sam/Projects/emscripten/emscripten.py", line 542, in compile_settings
+    cwd=path_from_root('src'), error_limit=300)
+  File "/home/sam/Projects/emscripten/tools/jsrun.py", line 131, in run_js
+    raise Exception('Expected the command ' + str(command) + ' to finish with return code ' + str(assert_returncode) + ', but it returned with code ' + str(proc.returncode) + ' instead! Output: ' + str(ret)[:error_limit])
+Exception: Expected the command ['node', '/home/sam/Projects/emscripten/src/compiler.js', '/tmp/tmpRWgjh9.txt', '/home/sam/Projects/emscripten/src/library_pthread_stub.js'] to finish with return code 0, but it returned with code 1 instead! Output: // The Module object: Our interface to the outside world. We import
+// and export values on it, and do the work to get that through
+// closure compiler if necessary. There are various ways Module can be used:
+// 1. Not defined. We create it here
+// 2. A function parameter, function(Module) { ..gener
+----------
+
+#include <sys/types.h>
+#include <unistd.h>
+#include <sys/socket.h>
+                  #include <netinet/in.h>
+
+int main(void) {
+    setsockopt(0, IPPROTO_IP, IP_TRANSPARENT, NULL, 0);
+    return 0;
+}
+
+----------
+/home/sam/Projects/emscripten/emcc -pipe -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 -o objs/autotest objs/autotest.c
+----------
+
+----------------------------------------
+checking for IP_BINDANY
+
+objs/autotest.c:8:31: error: use of undeclared identifier 'IP_BINDANY'
+    setsockopt(0, IPPROTO_IP, IP_BINDANY, NULL, 0);
+                              ^
+1 error generated.
+ERROR:root:compiler frontend failed to generate LLVM IR, haltingARGS:['/home/sam/Projects/emsdk/clang/tag-e1.37.22/build_tag-e1.37.22_64/bin/clang', '-target', 'asmjs-unknown-emscripten', '-D__EMSCRIPTEN_major__=1', '-D__EMSCRIPTEN_minor__=37', '-D__EMSCRIPTEN_tiny__=22', '-D_LIBCPP_ABI_VERSION=2', '-Werror=implicit-function-declaration', '-nostdinc', '-Xclang', '-nobuiltininc', '-Xclang', '-nostdsysteminc', '-Xclang', '-isystem/home/sam/Projects/emscripten/system/include/libcxx', '-Xclang', '-isystem/home/sam/Projects/emscripten/system/lib/libcxxabi/include', '-Xclang', '-isystem/home/sam/Projects/emscripten/system/include/compat', '-Xclang', '-isystem/home/sam/Projects/emscripten/system/include', '-Xclang', '-isystem/home/sam/Projects/emscripten/system/include/SSE', '-Xclang', '-isystem/home/sam/Projects/emscripten/system/include/libc', '-Xclang', '-isystem/home/sam/Projects/emscripten/system/lib/libc/musl/arch/emscripten', '-Xclang', '-isystem/home/sam/Projects/emscripten/system/local/include', '-pipe', '-D_GNU_SOURCE', '-D_FILE_OFFSET_BITS=64', 'objs/autotest.c', '-Xclang', '-isystem/home/sam/Projects/emscripten/system/include/SDL', '-emit-llvm', '-S', '-o', '/tmp/tmp0nvOZJ/autotest_0.ll']
+----------
+
+#include <sys/types.h>
+#include <unistd.h>
+#include <sys/socket.h>
+                  #include <netinet/in.h>
+
+int main(void) {
+    setsockopt(0, IPPROTO_IP, IP_BINDANY, NULL, 0);
+    return 0;
+}
+
+----------
+/home/sam/Projects/emscripten/emcc -pipe -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 -o objs/autotest objs/autotest.c
+----------
+
+----------------------------------------
+checking for IP_RECVDSTADDR
+
+objs/autotest.c:8:31: error: use of undeclared identifier 'IP_RECVDSTADDR'
+    setsockopt(0, IPPROTO_IP, IP_RECVDSTADDR, NULL, 0);
+                              ^
+1 error generated.
+ERROR:root:compiler frontend failed to generate LLVM IR, haltingARGS:['/home/sam/Projects/emsdk/clang/tag-e1.37.22/build_tag-e1.37.22_64/bin/clang', '-target', 'asmjs-unknown-emscripten', '-D__EMSCRIPTEN_major__=1', '-D__EMSCRIPTEN_minor__=37', '-D__EMSCRIPTEN_tiny__=22', '-D_LIBCPP_ABI_VERSION=2', '-Werror=implicit-function-declaration', '-nostdinc', '-Xclang', '-nobuiltininc', '-Xclang', '-nostdsysteminc', '-Xclang', '-isystem/home/sam/Projects/emscripten/system/include/libcxx', '-Xclang', '-isystem/home/sam/Projects/emscripten/system/lib/libcxxabi/include', '-Xclang', '-isystem/home/sam/Projects/emscripten/system/include/compat', '-Xclang', '-isystem/home/sam/Projects/emscripten/system/include', '-Xclang', '-isystem/home/sam/Projects/emscripten/system/include/SSE', '-Xclang', '-isystem/home/sam/Projects/emscripten/system/include/libc', '-Xclang', '-isystem/home/sam/Projects/emscripten/system/lib/libc/musl/arch/emscripten', '-Xclang', '-isystem/home/sam/Projects/emscripten/system/local/include', '-pipe', '-D_GNU_SOURCE', '-D_FILE_OFFSET_BITS=64', 'objs/autotest.c', '-Xclang', '-isystem/home/sam/Projects/emscripten/system/include/SDL', '-emit-llvm', '-S', '-o', '/tmp/tmpzPVITR/autotest_0.ll']
+----------
+
+#include <sys/types.h>
+#include <unistd.h>
+#include <sys/socket.h>
+                  #include <netinet/in.h>
+
+int main(void) {
+    setsockopt(0, IPPROTO_IP, IP_RECVDSTADDR, NULL, 0);
+    return 0;
+}
+
+----------
+/home/sam/Projects/emscripten/emcc -pipe -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 -o objs/autotest objs/autotest.c
+----------
+
+----------------------------------------
+checking for IP_PKTINFO
+
+error: unresolved symbol: htons
+Aborting compilation due to previous errors | undefined
+Traceback (most recent call last):
+  File "/home/sam/Projects/emscripten/emcc", line 13, in <module>
+    emcc.run()
+  File "/home/sam/Projects/emscripten/emcc.py", line 1651, in run
+    final = shared.Building.emscripten(final, append_ext=False, extra_args=extra_args)
+  File "/home/sam/Projects/emscripten/tools/shared.py", line 2020, in emscripten
+    call_emscripten(cmdline)
+  File "/home/sam/Projects/emscripten/emscripten.py", line 2298, in _main
+    temp_files.run_and_clean(lambda: main(
+  File "/home/sam/Projects/emscripten/tools/tempfiles.py", line 78, in run_and_clean
+    return func()
+  File "/home/sam/Projects/emscripten/emscripten.py", line 2303, in <lambda>
+    DEBUG=DEBUG,
+  File "/home/sam/Projects/emscripten/emscripten.py", line 2203, in main
+    temp_files=temp_files, DEBUG=DEBUG)
+  File "/home/sam/Projects/emscripten/emscripten.py", line 98, in emscript
+    glue, forwarded_data = compiler_glue(metadata, settings, libraries, compiler_engine, temp_files, DEBUG)
+  File "/home/sam/Projects/emscripten/emscripten.py", line 222, in compiler_glue
+    glue, forwarded_data = compile_settings(compiler_engine, settings, libraries, temp_files)
+  File "/home/sam/Projects/emscripten/emscripten.py", line 542, in compile_settings
+    cwd=path_from_root('src'), error_limit=300)
+  File "/home/sam/Projects/emscripten/tools/jsrun.py", line 131, in run_js
+    raise Exception('Expected the command ' + str(command) + ' to finish with return code ' + str(assert_returncode) + ', but it returned with code ' + str(proc.returncode) + ' instead! Output: ' + str(ret)[:error_limit])
+Exception: Expected the command ['node', '/home/sam/Projects/emscripten/src/compiler.js', '/tmp/tmppTGVao.txt', '/home/sam/Projects/emscripten/src/library_pthread_stub.js'] to finish with return code 0, but it returned with code 1 instead! Output: // The Module object: Our interface to the outside world. We import
+// and export values on it, and do the work to get that through
+// closure compiler if necessary. There are various ways Module can be used:
+// 1. Not defined. We create it here
+// 2. A function parameter, function(Module) { ..gener
+----------
+
+#include <sys/types.h>
+#include <unistd.h>
+#include <sys/socket.h>
+                  #include <netinet/in.h>
+
+int main(void) {
+    setsockopt(0, IPPROTO_IP, IP_PKTINFO, NULL, 0);
+    return 0;
+}
+
+----------
+/home/sam/Projects/emscripten/emcc -pipe -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 -o objs/autotest objs/autotest.c
+----------
+
+----------------------------------------
+checking for IPV6_RECVPKTINFO
+
+error: unresolved symbol: htons
+Aborting compilation due to previous errors | undefined
+Traceback (most recent call last):
+  File "/home/sam/Projects/emscripten/emcc", line 13, in <module>
+    emcc.run()
+  File "/home/sam/Projects/emscripten/emcc.py", line 1651, in run
+    final = shared.Building.emscripten(final, append_ext=False, extra_args=extra_args)
+  File "/home/sam/Projects/emscripten/tools/shared.py", line 2020, in emscripten
+    call_emscripten(cmdline)
+  File "/home/sam/Projects/emscripten/emscripten.py", line 2298, in _main
+    temp_files.run_and_clean(lambda: main(
+  File "/home/sam/Projects/emscripten/tools/tempfiles.py", line 78, in run_and_clean
+    return func()
+  File "/home/sam/Projects/emscripten/emscripten.py", line 2303, in <lambda>
+    DEBUG=DEBUG,
+  File "/home/sam/Projects/emscripten/emscripten.py", line 2203, in main
+    temp_files=temp_files, DEBUG=DEBUG)
+  File "/home/sam/Projects/emscripten/emscripten.py", line 98, in emscript
+    glue, forwarded_data = compiler_glue(metadata, settings, libraries, compiler_engine, temp_files, DEBUG)
+  File "/home/sam/Projects/emscripten/emscripten.py", line 222, in compiler_glue
+    glue, forwarded_data = compile_settings(compiler_engine, settings, libraries, temp_files)
+  File "/home/sam/Projects/emscripten/emscripten.py", line 542, in compile_settings
+    cwd=path_from_root('src'), error_limit=300)
+  File "/home/sam/Projects/emscripten/tools/jsrun.py", line 131, in run_js
+    raise Exception('Expected the command ' + str(command) + ' to finish with return code ' + str(assert_returncode) + ', but it returned with code ' + str(proc.returncode) + ' instead! Output: ' + str(ret)[:error_limit])
+Exception: Expected the command ['node', '/home/sam/Projects/emscripten/src/compiler.js', '/tmp/tmpH0UZBz.txt', '/home/sam/Projects/emscripten/src/library_pthread_stub.js'] to finish with return code 0, but it returned with code 1 instead! Output: // The Module object: Our interface to the outside world. We import
+// and export values on it, and do the work to get that through
+// closure compiler if necessary. There are various ways Module can be used:
+// 1. Not defined. We create it here
+// 2. A function parameter, function(Module) { ..gener
+----------
+
+#include <sys/types.h>
+#include <unistd.h>
+#include <sys/socket.h>
+                  #include <netinet/in.h>
+
+int main(void) {
+    setsockopt(0, IPPROTO_IPV6, IPV6_RECVPKTINFO, NULL, 0);
+    return 0;
+}
+
+----------
+/home/sam/Projects/emscripten/emcc -pipe -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 -o objs/autotest objs/autotest.c
+----------
+
+----------------------------------------
+checking for TCP_DEFER_ACCEPT
+
+error: unresolved symbol: htons
+Aborting compilation due to previous errors | undefined
+Traceback (most recent call last):
+  File "/home/sam/Projects/emscripten/emcc", line 13, in <module>
+    emcc.run()
+  File "/home/sam/Projects/emscripten/emcc.py", line 1651, in run
+    final = shared.Building.emscripten(final, append_ext=False, extra_args=extra_args)
+  File "/home/sam/Projects/emscripten/tools/shared.py", line 2020, in emscripten
+    call_emscripten(cmdline)
+  File "/home/sam/Projects/emscripten/emscripten.py", line 2298, in _main
+    temp_files.run_and_clean(lambda: main(
+  File "/home/sam/Projects/emscripten/tools/tempfiles.py", line 78, in run_and_clean
+    return func()
+  File "/home/sam/Projects/emscripten/emscripten.py", line 2303, in <lambda>
+    DEBUG=DEBUG,
+  File "/home/sam/Projects/emscripten/emscripten.py", line 2203, in main
+    temp_files=temp_files, DEBUG=DEBUG)
+  File "/home/sam/Projects/emscripten/emscripten.py", line 98, in emscript
+    glue, forwarded_data = compiler_glue(metadata, settings, libraries, compiler_engine, temp_files, DEBUG)
+  File "/home/sam/Projects/emscripten/emscripten.py", line 222, in compiler_glue
+    glue, forwarded_data = compile_settings(compiler_engine, settings, libraries, temp_files)
+  File "/home/sam/Projects/emscripten/emscripten.py", line 542, in compile_settings
+    cwd=path_from_root('src'), error_limit=300)
+  File "/home/sam/Projects/emscripten/tools/jsrun.py", line 131, in run_js
+    raise Exception('Expected the command ' + str(command) + ' to finish with return code ' + str(assert_returncode) + ', but it returned with code ' + str(proc.returncode) + ' instead! Output: ' + str(ret)[:error_limit])
+Exception: Expected the command ['node', '/home/sam/Projects/emscripten/src/compiler.js', '/tmp/tmpbbD2SC.txt', '/home/sam/Projects/emscripten/src/library_pthread_stub.js'] to finish with return code 0, but it returned with code 1 instead! Output: // The Module object: Our interface to the outside world. We import
+// and export values on it, and do the work to get that through
+// closure compiler if necessary. There are various ways Module can be used:
+// 1. Not defined. We create it here
+// 2. A function parameter, function(Module) { ..gener
+----------
+
+#include <sys/types.h>
+#include <unistd.h>
+#include <sys/socket.h>
+                  #include <netinet/in.h>
+                  #include <netinet/tcp.h>
+
+int main(void) {
+    setsockopt(0, IPPROTO_TCP, TCP_DEFER_ACCEPT, NULL, 0);
+    return 0;
+}
+
+----------
+/home/sam/Projects/emscripten/emcc -pipe -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 -o objs/autotest objs/autotest.c
+----------
+
+----------------------------------------
+checking for TCP_KEEPIDLE
+
+error: unresolved symbol: htons
+Aborting compilation due to previous errors | undefined
+Traceback (most recent call last):
+  File "/home/sam/Projects/emscripten/emcc", line 13, in <module>
+    emcc.run()
+  File "/home/sam/Projects/emscripten/emcc.py", line 1651, in run
+    final = shared.Building.emscripten(final, append_ext=False, extra_args=extra_args)
+  File "/home/sam/Projects/emscripten/tools/shared.py", line 2020, in emscripten
+    call_emscripten(cmdline)
+  File "/home/sam/Projects/emscripten/emscripten.py", line 2298, in _main
+    temp_files.run_and_clean(lambda: main(
+  File "/home/sam/Projects/emscripten/tools/tempfiles.py", line 78, in run_and_clean
+    return func()
+  File "/home/sam/Projects/emscripten/emscripten.py", line 2303, in <lambda>
+    DEBUG=DEBUG,
+  File "/home/sam/Projects/emscripten/emscripten.py", line 2203, in main
+    temp_files=temp_files, DEBUG=DEBUG)
+  File "/home/sam/Projects/emscripten/emscripten.py", line 98, in emscript
+    glue, forwarded_data = compiler_glue(metadata, settings, libraries, compiler_engine, temp_files, DEBUG)
+  File "/home/sam/Projects/emscripten/emscripten.py", line 222, in compiler_glue
+    glue, forwarded_data = compile_settings(compiler_engine, settings, libraries, temp_files)
+  File "/home/sam/Projects/emscripten/emscripten.py", line 542, in compile_settings
+    cwd=path_from_root('src'), error_limit=300)
+  File "/home/sam/Projects/emscripten/tools/jsrun.py", line 131, in run_js
+    raise Exception('Expected the command ' + str(command) + ' to finish with return code ' + str(assert_returncode) + ', but it returned with code ' + str(proc.returncode) + ' instead! Output: ' + str(ret)[:error_limit])
+Exception: Expected the command ['node', '/home/sam/Projects/emscripten/src/compiler.js', '/tmp/tmpuQ89ZK.txt', '/home/sam/Projects/emscripten/src/library_pthread_stub.js'] to finish with return code 0, but it returned with code 1 instead! Output: // The Module object: Our interface to the outside world. We import
+// and export values on it, and do the work to get that through
+// closure compiler if necessary. There are various ways Module can be used:
+// 1. Not defined. We create it here
+// 2. A function parameter, function(Module) { ..gener
+----------
+
+#include <sys/types.h>
+#include <unistd.h>
+#include <sys/socket.h>
+                  #include <netinet/in.h>
+                  #include <netinet/tcp.h>
+
+int main(void) {
+    setsockopt(0, IPPROTO_TCP, TCP_KEEPIDLE, NULL, 0);
+                  setsockopt(0, IPPROTO_TCP, TCP_KEEPINTVL, NULL, 0);
+                  setsockopt(0, IPPROTO_TCP, TCP_KEEPCNT, NULL, 0);
+    return 0;
+}
+
+----------
+/home/sam/Projects/emscripten/emcc -pipe -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 -o objs/autotest objs/autotest.c
+----------
+
+----------------------------------------
+checking for TCP_FASTOPEN
+
+error: unresolved symbol: htons
+Aborting compilation due to previous errors | undefined
+Traceback (most recent call last):
+  File "/home/sam/Projects/emscripten/emcc", line 13, in <module>
+    emcc.run()
+  File "/home/sam/Projects/emscripten/emcc.py", line 1651, in run
+    final = shared.Building.emscripten(final, append_ext=False, extra_args=extra_args)
+  File "/home/sam/Projects/emscripten/tools/shared.py", line 2020, in emscripten
+    call_emscripten(cmdline)
+  File "/home/sam/Projects/emscripten/emscripten.py", line 2298, in _main
+    temp_files.run_and_clean(lambda: main(
+  File "/home/sam/Projects/emscripten/tools/tempfiles.py", line 78, in run_and_clean
+    return func()
+  File "/home/sam/Projects/emscripten/emscripten.py", line 2303, in <lambda>
+    DEBUG=DEBUG,
+  File "/home/sam/Projects/emscripten/emscripten.py", line 2203, in main
+    temp_files=temp_files, DEBUG=DEBUG)
+  File "/home/sam/Projects/emscripten/emscripten.py", line 98, in emscript
+    glue, forwarded_data = compiler_glue(metadata, settings, libraries, compiler_engine, temp_files, DEBUG)
+  File "/home/sam/Projects/emscripten/emscripten.py", line 222, in compiler_glue
+    glue, forwarded_data = compile_settings(compiler_engine, settings, libraries, temp_files)
+  File "/home/sam/Projects/emscripten/emscripten.py", line 542, in compile_settings
+    cwd=path_from_root('src'), error_limit=300)
+  File "/home/sam/Projects/emscripten/tools/jsrun.py", line 131, in run_js
+    raise Exception('Expected the command ' + str(command) + ' to finish with return code ' + str(assert_returncode) + ', but it returned with code ' + str(proc.returncode) + ' instead! Output: ' + str(ret)[:error_limit])
+Exception: Expected the command ['node', '/home/sam/Projects/emscripten/src/compiler.js', '/tmp/tmpQhGaz4.txt', '/home/sam/Projects/emscripten/src/library_pthread_stub.js'] to finish with return code 0, but it returned with code 1 instead! Output: // The Module object: Our interface to the outside world. We import
+// and export values on it, and do the work to get that through
+// closure compiler if necessary. There are various ways Module can be used:
+// 1. Not defined. We create it here
+// 2. A function parameter, function(Module) { ..gener
+----------
+
+#include <sys/types.h>
+#include <unistd.h>
+#include <sys/socket.h>
+                  #include <netinet/in.h>
+                  #include <netinet/tcp.h>
+
+int main(void) {
+    setsockopt(0, IPPROTO_TCP, TCP_FASTOPEN, NULL, 0);
+    return 0;
+}
+
+----------
+/home/sam/Projects/emscripten/emcc -pipe -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 -o objs/autotest objs/autotest.c
+----------
+
+----------------------------------------
+checking for TCP_INFO
+
+error: unresolved symbol: htons
+Aborting compilation due to previous errors | undefined
+Traceback (most recent call last):
+  File "/home/sam/Projects/emscripten/emcc", line 13, in <module>
+    emcc.run()
+  File "/home/sam/Projects/emscripten/emcc.py", line 1651, in run
+    final = shared.Building.emscripten(final, append_ext=False, extra_args=extra_args)
+  File "/home/sam/Projects/emscripten/tools/shared.py", line 2020, in emscripten
+    call_emscripten(cmdline)
+  File "/home/sam/Projects/emscripten/emscripten.py", line 2298, in _main
+    temp_files.run_and_clean(lambda: main(
+  File "/home/sam/Projects/emscripten/tools/tempfiles.py", line 78, in run_and_clean
+    return func()
+  File "/home/sam/Projects/emscripten/emscripten.py", line 2303, in <lambda>
+    DEBUG=DEBUG,
+  File "/home/sam/Projects/emscripten/emscripten.py", line 2203, in main
+    temp_files=temp_files, DEBUG=DEBUG)
+  File "/home/sam/Projects/emscripten/emscripten.py", line 98, in emscript
+    glue, forwarded_data = compiler_glue(metadata, settings, libraries, compiler_engine, temp_files, DEBUG)
+  File "/home/sam/Projects/emscripten/emscripten.py", line 222, in compiler_glue
+    glue, forwarded_data = compile_settings(compiler_engine, settings, libraries, temp_files)
+  File "/home/sam/Projects/emscripten/emscripten.py", line 542, in compile_settings
+    cwd=path_from_root('src'), error_limit=300)
+  File "/home/sam/Projects/emscripten/tools/jsrun.py", line 131, in run_js
+    raise Exception('Expected the command ' + str(command) + ' to finish with return code ' + str(assert_returncode) + ', but it returned with code ' + str(proc.returncode) + ' instead! Output: ' + str(ret)[:error_limit])
+Exception: Expected the command ['node', '/home/sam/Projects/emscripten/src/compiler.js', '/tmp/tmpxqNM42.txt', '/home/sam/Projects/emscripten/src/library_pthread_stub.js'] to finish with return code 0, but it returned with code 1 instead! Output: // The Module object: Our interface to the outside world. We import
+// and export values on it, and do the work to get that through
+// closure compiler if necessary. There are various ways Module can be used:
+// 1. Not defined. We create it here
+// 2. A function parameter, function(Module) { ..gener
+----------
+
+#include <sys/types.h>
+#include <unistd.h>
+#include <sys/socket.h>
+                  #include <netinet/in.h>
+                  #include <netinet/tcp.h>
+
+int main(void) {
+    socklen_t optlen = sizeof(struct tcp_info);
+                  struct tcp_info ti;
+                  ti.tcpi_rtt = 0;
+                  ti.tcpi_rttvar = 0;
+                  ti.tcpi_snd_cwnd = 0;
+                  ti.tcpi_rcv_space = 0;
+                  getsockopt(0, IPPROTO_TCP, TCP_INFO, &ti, &optlen);
+    return 0;
+}
+
+----------
+/home/sam/Projects/emscripten/emcc -pipe -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 -o objs/autotest objs/autotest.c
+----------
+
+----------------------------------------
+checking for accept4()
+
+error: unresolved symbol: htons
+Aborting compilation due to previous errors | undefined
+Traceback (most recent call last):
+  File "/home/sam/Projects/emscripten/emcc", line 13, in <module>
+    emcc.run()
+  File "/home/sam/Projects/emscripten/emcc.py", line 1651, in run
+    final = shared.Building.emscripten(final, append_ext=False, extra_args=extra_args)
+  File "/home/sam/Projects/emscripten/tools/shared.py", line 2020, in emscripten
+    call_emscripten(cmdline)
+  File "/home/sam/Projects/emscripten/emscripten.py", line 2298, in _main
+    temp_files.run_and_clean(lambda: main(
+  File "/home/sam/Projects/emscripten/tools/tempfiles.py", line 78, in run_and_clean
+    return func()
+  File "/home/sam/Projects/emscripten/emscripten.py", line 2303, in <lambda>
+    DEBUG=DEBUG,
+  File "/home/sam/Projects/emscripten/emscripten.py", line 2203, in main
+    temp_files=temp_files, DEBUG=DEBUG)
+  File "/home/sam/Projects/emscripten/emscripten.py", line 98, in emscript
+    glue, forwarded_data = compiler_glue(metadata, settings, libraries, compiler_engine, temp_files, DEBUG)
+  File "/home/sam/Projects/emscripten/emscripten.py", line 222, in compiler_glue
+    glue, forwarded_data = compile_settings(compiler_engine, settings, libraries, temp_files)
+  File "/home/sam/Projects/emscripten/emscripten.py", line 542, in compile_settings
+    cwd=path_from_root('src'), error_limit=300)
+  File "/home/sam/Projects/emscripten/tools/jsrun.py", line 131, in run_js
+    raise Exception('Expected the command ' + str(command) + ' to finish with return code ' + str(assert_returncode) + ', but it returned with code ' + str(proc.returncode) + ' instead! Output: ' + str(ret)[:error_limit])
+Exception: Expected the command ['node', '/home/sam/Projects/emscripten/src/compiler.js', '/tmp/tmpjV6ylX.txt', '/home/sam/Projects/emscripten/src/library_pthread_stub.js'] to finish with return code 0, but it returned with code 1 instead! Output: // The Module object: Our interface to the outside world. We import
+// and export values on it, and do the work to get that through
+// closure compiler if necessary. There are various ways Module can be used:
+// 1. Not defined. We create it here
+// 2. A function parameter, function(Module) { ..gener
+----------
+
+#include <sys/types.h>
+#include <unistd.h>
+#include <sys/socket.h>
+
+int main(void) {
+    accept4(0, NULL, NULL, SOCK_NONBLOCK);
+    return 0;
+}
+
+----------
+/home/sam/Projects/emscripten/emcc -pipe -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 -o objs/autotest objs/autotest.c
+----------
+
+----------------------------------------
+checking for eventfd()
+
+error: unresolved symbol: eventfd
+Aborting compilation due to previous errors | undefined
+Traceback (most recent call last):
+  File "/home/sam/Projects/emscripten/emcc", line 13, in <module>
+    emcc.run()
+  File "/home/sam/Projects/emscripten/emcc.py", line 1651, in run
+    final = shared.Building.emscripten(final, append_ext=False, extra_args=extra_args)
+  File "/home/sam/Projects/emscripten/tools/shared.py", line 2020, in emscripten
+    call_emscripten(cmdline)
+  File "/home/sam/Projects/emscripten/emscripten.py", line 2298, in _main
+    temp_files.run_and_clean(lambda: main(
+  File "/home/sam/Projects/emscripten/tools/tempfiles.py", line 78, in run_and_clean
+    return func()
+  File "/home/sam/Projects/emscripten/emscripten.py", line 2303, in <lambda>
+    DEBUG=DEBUG,
+  File "/home/sam/Projects/emscripten/emscripten.py", line 2203, in main
+    temp_files=temp_files, DEBUG=DEBUG)
+  File "/home/sam/Projects/emscripten/emscripten.py", line 98, in emscript
+    glue, forwarded_data = compiler_glue(metadata, settings, libraries, compiler_engine, temp_files, DEBUG)
+  File "/home/sam/Projects/emscripten/emscripten.py", line 222, in compiler_glue
+    glue, forwarded_data = compile_settings(compiler_engine, settings, libraries, temp_files)
+  File "/home/sam/Projects/emscripten/emscripten.py", line 542, in compile_settings
+    cwd=path_from_root('src'), error_limit=300)
+  File "/home/sam/Projects/emscripten/tools/jsrun.py", line 131, in run_js
+    raise Exception('Expected the command ' + str(command) + ' to finish with return code ' + str(assert_returncode) + ', but it returned with code ' + str(proc.returncode) + ' instead! Output: ' + str(ret)[:error_limit])
+Exception: Expected the command ['node', '/home/sam/Projects/emscripten/src/compiler.js', '/tmp/tmp29zljn.txt', '/home/sam/Projects/emscripten/src/library_pthread_stub.js'] to finish with return code 0, but it returned with code 1 instead! Output: // The Module object: Our interface to the outside world. We import
+// and export values on it, and do the work to get that through
+// closure compiler if necessary. There are various ways Module can be used:
+// 1. Not defined. We create it here
+// 2. A function parameter, function(Module) { ..gener
+----------
+
+#include <sys/types.h>
+#include <unistd.h>
+#include <sys/eventfd.h>
+
+int main(void) {
+    (void) eventfd(0, 0);
+    return 0;
+}
+
+----------
+/home/sam/Projects/emscripten/emcc -pipe -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 -o objs/autotest objs/autotest.c
+----------
+
+----------------------------------------
+checking for eventfd() (SYS_eventfd)
+
+
+----------------------------------------
+checking for int size
+
+
+----------------------------------------
+checking for long size
+
+
+----------------------------------------
+checking for long long size
+
+
+----------------------------------------
+checking for void * size
+
+
+----------------------------------------
+checking for uint32_t
+
+
+----------------------------------------
+checking for uint64_t
+
+
+----------------------------------------
+checking for sig_atomic_t
+
+
+----------------------------------------
+checking for sig_atomic_t size
+
+
+----------------------------------------
+checking for socklen_t
+
+
+----------------------------------------
+checking for in_addr_t
+
+
+----------------------------------------
+checking for in_port_t
+
+
+----------------------------------------
+checking for rlim_t
+
+
+----------------------------------------
+checking for uintptr_t
+
+
+----------------------------------------
+checking for system byte ordering
+
+
+----------------------------------------
+checking for size_t size
+
+
+----------------------------------------
+checking for off_t size
+
+
+----------------------------------------
+checking for time_t size
+
+
+----------------------------------------
+checking for AF_INET6
+
+
+----------------------------------------
+checking for setproctitle()
+
+objs/autotest.c:7:5: error: implicit declaration of function 'setproctitle' is invalid in C99 [-Werror,-Wimplicit-function-declaration]
+    setproctitle("test");;
+    ^
+1 error generated.
+ERROR:root:compiler frontend failed to generate LLVM IR, haltingARGS:['/home/sam/Projects/emsdk/clang/tag-e1.37.22/build_tag-e1.37.22_64/bin/clang', '-target', 'asmjs-unknown-emscripten', '-D__EMSCRIPTEN_major__=1', '-D__EMSCRIPTEN_minor__=37', '-D__EMSCRIPTEN_tiny__=22', '-D_LIBCPP_ABI_VERSION=2', '-Werror=implicit-function-declaration', '-nostdinc', '-Xclang', '-nobuiltininc', '-Xclang', '-nostdsysteminc', '-Xclang', '-isystem/home/sam/Projects/emscripten/system/include/libcxx', '-Xclang', '-isystem/home/sam/Projects/emscripten/system/lib/libcxxabi/include', '-Xclang', '-isystem/home/sam/Projects/emscripten/system/include/compat', '-Xclang', '-isystem/home/sam/Projects/emscripten/system/include', '-Xclang', '-isystem/home/sam/Projects/emscripten/system/include/SSE', '-Xclang', '-isystem/home/sam/Projects/emscripten/system/include/libc', '-Xclang', '-isystem/home/sam/Projects/emscripten/system/lib/libc/musl/arch/emscripten', '-Xclang', '-isystem/home/sam/Projects/emscripten/system/local/include', '-pipe', '-D_GNU_SOURCE', '-D_FILE_OFFSET_BITS=64', 'objs/autotest.c', '-Xclang', '-isystem/home/sam/Projects/emscripten/system/include/SDL', '-emit-llvm', '-S', '-o', '/tmp/tmpCmiGvW/autotest_0.ll']
+----------
+
+#include <sys/types.h>
+#include <unistd.h>
+#include <stdlib.h>
+
+int main(void) {
+    setproctitle("test");;
+    return 0;
+}
+
+----------
+/home/sam/Projects/emscripten/emcc -pipe -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 -o objs/autotest objs/autotest.c
+----------
+
+----------------------------------------
+checking for pread()
+
+
+----------------------------------------
+checking for pwrite()
+
+
+----------------------------------------
+checking for pwritev()
+
+
+----------------------------------------
+checking for sys_nerr
+
+objs/autotest.c:8:18: error: use of undeclared identifier 'sys_nerr'
+    printf("%d", sys_nerr);;
+                 ^
+1 error generated.
+ERROR:root:compiler frontend failed to generate LLVM IR, haltingARGS:['/home/sam/Projects/emsdk/clang/tag-e1.37.22/build_tag-e1.37.22_64/bin/clang', '-target', 'asmjs-unknown-emscripten', '-D__EMSCRIPTEN_major__=1', '-D__EMSCRIPTEN_minor__=37', '-D__EMSCRIPTEN_tiny__=22', '-D_LIBCPP_ABI_VERSION=2', '-Werror=implicit-function-declaration', '-nostdinc', '-Xclang', '-nobuiltininc', '-Xclang', '-nostdsysteminc', '-Xclang', '-isystem/home/sam/Projects/emscripten/system/include/libcxx', '-Xclang', '-isystem/home/sam/Projects/emscripten/system/lib/libcxxabi/include', '-Xclang', '-isystem/home/sam/Projects/emscripten/system/include/compat', '-Xclang', '-isystem/home/sam/Projects/emscripten/system/include', '-Xclang', '-isystem/home/sam/Projects/emscripten/system/include/SSE', '-Xclang', '-isystem/home/sam/Projects/emscripten/system/include/libc', '-Xclang', '-isystem/home/sam/Projects/emscripten/system/lib/libc/musl/arch/emscripten', '-Xclang', '-isystem/home/sam/Projects/emscripten/system/local/include', '-pipe', '-D_GNU_SOURCE', '-D_FILE_OFFSET_BITS=64', 'objs/autotest.c', '-Xclang', '-isystem/home/sam/Projects/emscripten/system/include/SDL', '-emit-llvm', '-S', '-o', '/tmp/tmpG3GrE1/autotest_0.ll']
+----------
+
+#include <sys/types.h>
+#include <unistd.h>
+#include <errno.h>
+                  #include <stdio.h>
+
+int main(void) {
+    printf("%d", sys_nerr);;
+    return 0;
+}
+
+----------
+/home/sam/Projects/emscripten/emcc -pipe -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 -o objs/autotest objs/autotest.c
+----------
+
+----------------------------------------
+checking for _sys_nerr
+
+objs/autotest.c:8:18: error: use of undeclared identifier '_sys_nerr'
+    printf("%d", _sys_nerr);;
+                 ^
+1 error generated.
+ERROR:root:compiler frontend failed to generate LLVM IR, haltingARGS:['/home/sam/Projects/emsdk/clang/tag-e1.37.22/build_tag-e1.37.22_64/bin/clang', '-target', 'asmjs-unknown-emscripten', '-D__EMSCRIPTEN_major__=1', '-D__EMSCRIPTEN_minor__=37', '-D__EMSCRIPTEN_tiny__=22', '-D_LIBCPP_ABI_VERSION=2', '-Werror=implicit-function-declaration', '-nostdinc', '-Xclang', '-nobuiltininc', '-Xclang', '-nostdsysteminc', '-Xclang', '-isystem/home/sam/Projects/emscripten/system/include/libcxx', '-Xclang', '-isystem/home/sam/Projects/emscripten/system/lib/libcxxabi/include', '-Xclang', '-isystem/home/sam/Projects/emscripten/system/include/compat', '-Xclang', '-isystem/home/sam/Projects/emscripten/system/include', '-Xclang', '-isystem/home/sam/Projects/emscripten/system/include/SSE', '-Xclang', '-isystem/home/sam/Projects/emscripten/system/include/libc', '-Xclang', '-isystem/home/sam/Projects/emscripten/system/lib/libc/musl/arch/emscripten', '-Xclang', '-isystem/home/sam/Projects/emscripten/system/local/include', '-pipe', '-D_GNU_SOURCE', '-D_FILE_OFFSET_BITS=64', 'objs/autotest.c', '-Xclang', '-isystem/home/sam/Projects/emscripten/system/include/SDL', '-emit-llvm', '-S', '-o', '/tmp/tmpgmzz3r/autotest_0.ll']
+----------
+
+#include <sys/types.h>
+#include <unistd.h>
+#include <errno.h>
+                      #include <stdio.h>
+
+int main(void) {
+    printf("%d", _sys_nerr);;
+    return 0;
+}
+
+----------
+/home/sam/Projects/emscripten/emcc -pipe -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 -o objs/autotest objs/autotest.c
+----------
+
+----------------------------------------
+checking for maximum errno
+
+1000
+
+----------------------------------------
+checking for localtime_r()
+
+
+----------------------------------------
+checking for posix_memalign()
+
+
+----------------------------------------
+checking for memalign()
+
+
+----------------------------------------
+checking for mmap(MAP_ANON|MAP_SHARED)
+
+
+----------------------------------------
+checking for mmap("/dev/zero", MAP_SHARED)
+
+
+----------------------------------------
+checking for System V shared memory
+
+error: unresolved symbol: shmget
+error: unresolved symbol: shmctl
+Aborting compilation due to previous errors | undefined
+Traceback (most recent call last):
+  File "/home/sam/Projects/emscripten/emcc", line 13, in <module>
+    emcc.run()
+  File "/home/sam/Projects/emscripten/emcc.py", line 1651, in run
+    final = shared.Building.emscripten(final, append_ext=False, extra_args=extra_args)
+  File "/home/sam/Projects/emscripten/tools/shared.py", line 2020, in emscripten
+    call_emscripten(cmdline)
+  File "/home/sam/Projects/emscripten/emscripten.py", line 2298, in _main
+    temp_files.run_and_clean(lambda: main(
+  File "/home/sam/Projects/emscripten/tools/tempfiles.py", line 78, in run_and_clean
+    return func()
+  File "/home/sam/Projects/emscripten/emscripten.py", line 2303, in <lambda>
+    DEBUG=DEBUG,
+  File "/home/sam/Projects/emscripten/emscripten.py", line 2203, in main
+    temp_files=temp_files, DEBUG=DEBUG)
+  File "/home/sam/Projects/emscripten/emscripten.py", line 98, in emscript
+    glue, forwarded_data = compiler_glue(metadata, settings, libraries, compiler_engine, temp_files, DEBUG)
+  File "/home/sam/Projects/emscripten/emscripten.py", line 222, in compiler_glue
+    glue, forwarded_data = compile_settings(compiler_engine, settings, libraries, temp_files)
+  File "/home/sam/Projects/emscripten/emscripten.py", line 542, in compile_settings
+    cwd=path_from_root('src'), error_limit=300)
+  File "/home/sam/Projects/emscripten/tools/jsrun.py", line 131, in run_js
+    raise Exception('Expected the command ' + str(command) + ' to finish with return code ' + str(assert_returncode) + ', but it returned with code ' + str(proc.returncode) + ' instead! Output: ' + str(ret)[:error_limit])
+Exception: Expected the command ['node', '/home/sam/Projects/emscripten/src/compiler.js', '/tmp/tmpMgsdUM.txt', '/home/sam/Projects/emscripten/src/library_pthread_stub.js'] to finish with return code 0, but it returned with code 1 instead! Output: // The Module object: Our interface to the outside world. We import
+// and export values on it, and do the work to get that through
+// closure compiler if necessary. There are various ways Module can be used:
+// 1. Not defined. We create it here
+// 2. A function parameter, function(Module) { ..gener
+----------
+
+#include <sys/types.h>
+#include <unistd.h>
+#include <sys/ipc.h>
+                  #include <sys/shm.h>
+
+int main(void) {
+    int  id;
+                  id = shmget(IPC_PRIVATE, 4096, (SHM_R|SHM_W|IPC_CREAT));
+                  if (id == -1) return 1;
+                  shmctl(id, IPC_RMID, NULL);;
+    return 0;
+}
+
+----------
+/home/sam/Projects/emscripten/emcc -pipe -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 -o objs/autotest objs/autotest.c
+----------
+
+----------------------------------------
+checking for POSIX semaphores
+
+
+----------------------------------------
+checking for struct msghdr.msg_control
+
+
+----------------------------------------
+checking for ioctl(FIONBIO)
+
+
+----------------------------------------
+checking for struct tm.tm_gmtoff
+
+
+----------------------------------------
+checking for struct dirent.d_namlen
+
+objs/autotest.c:8:29: error: no member named 'd_namlen' in 'struct dirent'; did you mean 'd_name'?
+    struct dirent  dir; dir.d_namlen = 0;
+                            ^~~~~~~~
+                            d_name
+/home/sam/Projects/emscripten/system/include/libc/dirent.h:27:7: note: 'd_name' declared here
+        char d_name[256];
+             ^
+objs/autotest.c:8:38: error: array type 'char [256]' is not assignable
+    struct dirent  dir; dir.d_namlen = 0;
+                        ~~~~~~~~~~~~ ^
+objs/autotest.c:9:42: error: no member named 'd_namlen' in 'struct dirent'; did you mean 'd_name'?
+                  printf("%d", (int) dir.d_namlen);
+                                         ^~~~~~~~
+                                         d_name
+/home/sam/Projects/emscripten/system/include/libc/dirent.h:27:7: note: 'd_name' declared here
+        char d_name[256];
+             ^
+3 errors generated.
+ERROR:root:compiler frontend failed to generate LLVM IR, haltingARGS:['/home/sam/Projects/emsdk/clang/tag-e1.37.22/build_tag-e1.37.22_64/bin/clang', '-target', 'asmjs-unknown-emscripten', '-D__EMSCRIPTEN_major__=1', '-D__EMSCRIPTEN_minor__=37', '-D__EMSCRIPTEN_tiny__=22', '-D_LIBCPP_ABI_VERSION=2', '-Werror=implicit-function-declaration', '-nostdinc', '-Xclang', '-nobuiltininc', '-Xclang', '-nostdsysteminc', '-Xclang', '-isystem/home/sam/Projects/emscripten/system/include/libcxx', '-Xclang', '-isystem/home/sam/Projects/emscripten/system/lib/libcxxabi/include', '-Xclang', '-isystem/home/sam/Projects/emscripten/system/include/compat', '-Xclang', '-isystem/home/sam/Projects/emscripten/system/include', '-Xclang', '-isystem/home/sam/Projects/emscripten/system/include/SSE', '-Xclang', '-isystem/home/sam/Projects/emscripten/system/include/libc', '-Xclang', '-isystem/home/sam/Projects/emscripten/system/lib/libc/musl/arch/emscripten', '-Xclang', '-isystem/home/sam/Projects/emscripten/system/local/include', '-pipe', '-D_GNU_SOURCE', '-D_FILE_OFFSET_BITS=64', 'objs/autotest.c', '-Xclang', '-isystem/home/sam/Projects/emscripten/system/include/SDL', '-emit-llvm', '-S', '-o', '/tmp/tmpPrGd1_/autotest_0.ll']
+----------
+
+#include <sys/types.h>
+#include <unistd.h>
+#include <dirent.h>
+                  #include <stdio.h>
+
+int main(void) {
+    struct dirent  dir; dir.d_namlen = 0;
+                  printf("%d", (int) dir.d_namlen);
+    return 0;
+}
+
+----------
+/home/sam/Projects/emscripten/emcc -pipe -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 -o objs/autotest objs/autotest.c
+----------
+
+----------------------------------------
+checking for struct dirent.d_type
+
+
+----------------------------------------
+checking for sysconf(_SC_NPROCESSORS_ONLN)
+
+
+----------------------------------------
+checking for openat(), fstatat()
+
+
+----------------------------------------
+checking for getaddrinfo()
+
