@@ -1,4 +1,4 @@
-#define NGX_CONFIGURE " --without-http_rewrite_module --without-http_gzip_module --without-select_module --without-poll_module"
+#define NGX_CONFIGURE " --without-http_gzip_module --with-pcre=/usr/include/"
 
 #ifndef NGX_COMPILER
 #define NGX_COMPILER  "clang 4.0.0  (emscripten 1.37.22 : 1.37.22)"
@@ -228,6 +228,16 @@
 #endif
 
 
+#ifndef NGX_HAVE_SELECT
+#define NGX_HAVE_SELECT  1
+#endif
+
+
+#ifndef NGX_HAVE_POLL
+#define NGX_HAVE_POLL  1
+#endif
+
+
 #ifndef NGX_HTTP_CACHE
 #define NGX_HTTP_CACHE  1
 #endif
@@ -255,6 +265,11 @@
 
 #ifndef NGX_HTTP_UPSTREAM_ZONE
 #define NGX_HTTP_UPSTREAM_ZONE  1
+#endif
+
+
+#ifndef NGX_PCRE
+#define NGX_PCRE  1
 #endif
 
 

@@ -10,14 +10,14 @@
 #include <ngx_http.h>
 
 
-static void ngx_http_wait_request_handler(ngx_event_t *ev);
-static void ngx_http_process_request_line(ngx_event_t *rev);
-static void ngx_http_process_request_headers(ngx_event_t *rev);
-static ssize_t ngx_http_read_request_header(ngx_http_request_t *r);
-static ngx_int_t ngx_http_alloc_large_header_buffer(ngx_http_request_t *r,
+void ngx_http_wait_request_handler(ngx_event_t *ev);
+void ngx_http_process_request_line(ngx_event_t *rev);
+void ngx_http_process_request_headers(ngx_event_t *rev);
+ssize_t ngx_http_read_request_header(ngx_http_request_t *r);
+ngx_int_t ngx_http_alloc_large_header_buffer(ngx_http_request_t *r,
     ngx_uint_t request_line);
 
-static ngx_int_t ngx_http_process_header_line(ngx_http_request_t *r,
+ngx_int_t ngx_http_process_header_line(ngx_http_request_t *r,
     ngx_table_elt_t *h, ngx_uint_t offset);
 static ngx_int_t ngx_http_process_unique_header_line(ngx_http_request_t *r,
     ngx_table_elt_t *h, ngx_uint_t offset);
@@ -42,7 +42,7 @@ static void ngx_http_request_handler(ngx_event_t *ev);
 static void ngx_http_terminate_request(ngx_http_request_t *r, ngx_int_t rc);
 static void ngx_http_terminate_handler(ngx_http_request_t *r);
 static void ngx_http_finalize_connection(ngx_http_request_t *r);
-static ngx_int_t ngx_http_set_write_handler(ngx_http_request_t *r);
+ngx_int_t ngx_http_set_write_handler(ngx_http_request_t *r);
 static void ngx_http_writer(ngx_http_request_t *r);
 static void ngx_http_request_finalizer(ngx_http_request_t *r);
 
@@ -374,7 +374,7 @@ ngx_http_init_connection(ngx_connection_t *c)
 }
 
 
-static void
+void
 ngx_http_wait_request_handler(ngx_event_t *rev)
 {
     u_char                    *p;
@@ -916,7 +916,7 @@ ngx_http_ssl_servername(ngx_ssl_conn_t *ssl_conn, int *ad, void *arg)
 #endif
 
 
-static void
+void
 ngx_http_process_request_line(ngx_event_t *rev)
 {
     ssize_t              n;
@@ -1182,7 +1182,7 @@ ngx_http_process_request_uri(ngx_http_request_t *r)
 }
 
 
-static void
+void
 ngx_http_process_request_headers(ngx_event_t *rev)
 {
     u_char                     *p;
@@ -1368,7 +1368,7 @@ ngx_http_process_request_headers(ngx_event_t *rev)
 }
 
 
-static ssize_t
+ssize_t
 ngx_http_read_request_header(ngx_http_request_t *r)
 {
     ssize_t                    n;
@@ -1425,7 +1425,7 @@ ngx_http_read_request_header(ngx_http_request_t *r)
 }
 
 
-static ngx_int_t
+ngx_int_t
 ngx_http_alloc_large_header_buffer(ngx_http_request_t *r,
     ngx_uint_t request_line)
 {
@@ -1574,7 +1574,7 @@ ngx_http_alloc_large_header_buffer(ngx_http_request_t *r,
 }
 
 
-static ngx_int_t
+ngx_int_t
 ngx_http_process_header_line(ngx_http_request_t *r, ngx_table_elt_t *h,
     ngx_uint_t offset)
 {
@@ -2576,7 +2576,7 @@ ngx_http_finalize_connection(ngx_http_request_t *r)
 }
 
 
-static ngx_int_t
+ngx_int_t
 ngx_http_set_write_handler(ngx_http_request_t *r)
 {
     ngx_event_t               *wev;

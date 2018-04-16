@@ -10,13 +10,13 @@
 #include <ngx_event.h>
 
 
-static ngx_int_t ngx_poll_init(ngx_cycle_t *cycle, ngx_msec_t timer);
-static void ngx_poll_done(ngx_cycle_t *cycle);
-static ngx_int_t ngx_poll_add_event(ngx_event_t *ev, ngx_int_t event,
+ngx_int_t ngx_poll_init(ngx_cycle_t *cycle, ngx_msec_t timer);
+void ngx_poll_done(ngx_cycle_t *cycle);
+ngx_int_t ngx_poll_add_event(ngx_event_t *ev, ngx_int_t event,
     ngx_uint_t flags);
-static ngx_int_t ngx_poll_del_event(ngx_event_t *ev, ngx_int_t event,
+ngx_int_t ngx_poll_del_event(ngx_event_t *ev, ngx_int_t event,
     ngx_uint_t flags);
-static ngx_int_t ngx_poll_process_events(ngx_cycle_t *cycle, ngx_msec_t timer,
+ngx_int_t ngx_poll_process_events(ngx_cycle_t *cycle, ngx_msec_t timer,
     ngx_uint_t flags);
 static char *ngx_poll_init_conf(ngx_cycle_t *cycle, void *conf);
 
@@ -64,7 +64,7 @@ ngx_module_t  ngx_poll_module = {
 
 
 
-static ngx_int_t
+ngx_int_t
 ngx_poll_init(ngx_cycle_t *cycle, ngx_msec_t timer)
 {
     struct pollfd   *list;
@@ -101,7 +101,7 @@ ngx_poll_init(ngx_cycle_t *cycle, ngx_msec_t timer)
 }
 
 
-static void
+void
 ngx_poll_done(ngx_cycle_t *cycle)
 {
     ngx_free(event_list);
@@ -110,7 +110,7 @@ ngx_poll_done(ngx_cycle_t *cycle)
 }
 
 
-static ngx_int_t
+ngx_int_t
 ngx_poll_add_event(ngx_event_t *ev, ngx_int_t event, ngx_uint_t flags)
 {
     ngx_event_t       *e;
@@ -162,7 +162,7 @@ ngx_poll_add_event(ngx_event_t *ev, ngx_int_t event, ngx_uint_t flags)
 }
 
 
-static ngx_int_t
+ngx_int_t
 ngx_poll_del_event(ngx_event_t *ev, ngx_int_t event, ngx_uint_t flags)
 {
     ngx_event_t       *e;
@@ -235,7 +235,7 @@ ngx_poll_del_event(ngx_event_t *ev, ngx_int_t event, ngx_uint_t flags)
 }
 
 
-static ngx_int_t
+ngx_int_t
 ngx_poll_process_events(ngx_cycle_t *cycle, ngx_msec_t timer, ngx_uint_t flags)
 {
     int                 ready, revents;

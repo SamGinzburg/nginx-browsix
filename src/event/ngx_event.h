@@ -408,11 +408,32 @@ extern ngx_uint_t            ngx_use_epoll_rdhup;
 #endif
 
 
-#define ngx_process_events   ngx_event_actions.process_events
+//#define ngx_process_events   ngx_event_actions.process_events
+
+extern ngx_int_t ngx_poll_process_events(ngx_cycle_t *cycle, ngx_msec_t timer,
+    ngx_uint_t flags);
+
+static ngx_int_t ngx_process_events(ngx_cycle_t *cycle, ngx_msec_t timer,
+    ngx_uint_t flags) 
+{
+    return ngx_poll_process_events(cycle, timer, flags);
+}
+
 #define ngx_done_events      ngx_event_actions.done
 
 #define ngx_add_event        ngx_event_actions.add
-#define ngx_del_event        ngx_event_actions.del
+
+//#define ngx_del_event        ngx_event_actions.del
+
+extern ngx_int_t
+ngx_poll_del_event(ngx_event_t *ev, ngx_int_t event, ngx_uint_t flags);
+
+static ngx_int_t ngx_del_event(ngx_event_t *ev, ngx_int_t event,
+                               ngx_uint_t flags) 
+{
+    return ngx_poll_del_event(ev, event, flags);
+}
+
 #define ngx_add_conn         ngx_event_actions.add_conn
 #define ngx_del_conn         ngx_event_actions.del_conn
 

@@ -1,6 +1,6 @@
 
 CC =	/home/sam/Projects/emscripten/emcc
-CFLAGS =  -pipe -O -g 
+CFLAGS =  -pipe -Werror -g 
 CPP =	/home/sam/Projects/emscripten/emcc -E
 LINK =	$(CC)
 
@@ -9,6 +9,7 @@ ALL_INCS = -I src/core \
 	-I src/event \
 	-I src/event/modules \
 	-I src/os/unix \
+	-I /usr/include/ \
 	-I objs \
 	-I src/http \
 	-I src/http/modules
@@ -73,6 +74,8 @@ CORE_DEPS = src/core/nginx.h \
 	src/os/unix/ngx_process_cycle.h \
 	src/os/unix/ngx_linux_config.h \
 	src/os/unix/ngx_linux.h \
+	src/core/ngx_regex.h \
+	/usr/include//pcre.h \
 	objs/ngx_auto_config.h
 
 
@@ -80,6 +83,7 @@ CORE_INCS = -I src/core \
 	-I src/event \
 	-I src/event/modules \
 	-I src/os/unix \
+	-I /usr/include/ \
 	-I objs
 
 
@@ -167,6 +171,9 @@ objs/nginx:	objs/src/core/nginx.o \
 	objs/src/os/unix/ngx_dlopen.o \
 	objs/src/os/unix/ngx_process_cycle.o \
 	objs/src/os/unix/ngx_linux_init.o \
+	objs/src/event/modules/ngx_select_module.o \
+	objs/src/event/modules/ngx_poll_module.o \
+	objs/src/core/ngx_regex.o \
 	objs/src/http/ngx_http.o \
 	objs/src/http/ngx_http_core_module.o \
 	objs/src/http/ngx_http_special_response.o \
@@ -201,6 +208,7 @@ objs/nginx:	objs/src/core/nginx.o \
 	objs/src/http/modules/ngx_http_map_module.o \
 	objs/src/http/modules/ngx_http_split_clients_module.o \
 	objs/src/http/modules/ngx_http_referer_module.o \
+	objs/src/http/modules/ngx_http_rewrite_module.o \
 	objs/src/http/modules/ngx_http_proxy_module.o \
 	objs/src/http/modules/ngx_http_fastcgi_module.o \
 	objs/src/http/modules/ngx_http_uwsgi_module.o \
@@ -213,7 +221,8 @@ objs/nginx:	objs/src/core/nginx.o \
 	objs/src/http/modules/ngx_http_upstream_least_conn_module.o \
 	objs/src/http/modules/ngx_http_upstream_keepalive_module.o \
 	objs/src/http/modules/ngx_http_upstream_zone_module.o \
-	objs/ngx_modules.o
+	objs/ngx_modules.o \
+	/usr/include//.libs/libpcre.a
 
 	$(LINK) -o objs/nginx \
 	objs/src/core/nginx.o \
@@ -280,6 +289,9 @@ objs/nginx:	objs/src/core/nginx.o \
 	objs/src/os/unix/ngx_dlopen.o \
 	objs/src/os/unix/ngx_process_cycle.o \
 	objs/src/os/unix/ngx_linux_init.o \
+	objs/src/event/modules/ngx_select_module.o \
+	objs/src/event/modules/ngx_poll_module.o \
+	objs/src/core/ngx_regex.o \
 	objs/src/http/ngx_http.o \
 	objs/src/http/ngx_http_core_module.o \
 	objs/src/http/ngx_http_special_response.o \
@@ -314,6 +326,7 @@ objs/nginx:	objs/src/core/nginx.o \
 	objs/src/http/modules/ngx_http_map_module.o \
 	objs/src/http/modules/ngx_http_split_clients_module.o \
 	objs/src/http/modules/ngx_http_referer_module.o \
+	objs/src/http/modules/ngx_http_rewrite_module.o \
 	objs/src/http/modules/ngx_http_proxy_module.o \
 	objs/src/http/modules/ngx_http_fastcgi_module.o \
 	objs/src/http/modules/ngx_http_uwsgi_module.o \
@@ -327,6 +340,7 @@ objs/nginx:	objs/src/core/nginx.o \
 	objs/src/http/modules/ngx_http_upstream_keepalive_module.o \
 	objs/src/http/modules/ngx_http_upstream_zone_module.o \
 	objs/ngx_modules.o \
+	/usr/include//.libs/libpcre.a \
 	-Wl,-E
 	
 
@@ -788,6 +802,27 @@ objs/src/os/unix/ngx_linux_init.o:	$(CORE_DEPS) \
 		src/os/unix/ngx_linux_init.c
 
 
+objs/src/event/modules/ngx_select_module.o:	$(CORE_DEPS) \
+	src/event/modules/ngx_select_module.c
+	$(CC) -c $(CFLAGS) $(CORE_INCS) \
+		-o objs/src/event/modules/ngx_select_module.o \
+		src/event/modules/ngx_select_module.c
+
+
+objs/src/event/modules/ngx_poll_module.o:	$(CORE_DEPS) \
+	src/event/modules/ngx_poll_module.c
+	$(CC) -c $(CFLAGS) $(CORE_INCS) \
+		-o objs/src/event/modules/ngx_poll_module.o \
+		src/event/modules/ngx_poll_module.c
+
+
+objs/src/core/ngx_regex.o:	$(CORE_DEPS) \
+	src/core/ngx_regex.c
+	$(CC) -c $(CFLAGS) $(CORE_INCS) \
+		-o objs/src/core/ngx_regex.o \
+		src/core/ngx_regex.c
+
+
 objs/src/http/ngx_http.o:	$(CORE_DEPS) $(HTTP_DEPS) \
 	src/http/ngx_http.c
 	$(CC) -c $(CFLAGS) $(CORE_INCS) $(HTTP_INCS) \
@@ -1026,6 +1061,13 @@ objs/src/http/modules/ngx_http_referer_module.o:	$(CORE_DEPS) $(HTTP_DEPS) \
 		src/http/modules/ngx_http_referer_module.c
 
 
+objs/src/http/modules/ngx_http_rewrite_module.o:	$(CORE_DEPS) $(HTTP_DEPS) \
+	src/http/modules/ngx_http_rewrite_module.c
+	$(CC) -c $(CFLAGS) $(CORE_INCS) $(HTTP_INCS) \
+		-o objs/src/http/modules/ngx_http_rewrite_module.o \
+		src/http/modules/ngx_http_rewrite_module.c
+
+
 objs/src/http/modules/ngx_http_proxy_module.o:	$(CORE_DEPS) $(HTTP_DEPS) \
 	src/http/modules/ngx_http_proxy_module.c
 	$(CC) -c $(CFLAGS) $(CORE_INCS) $(HTTP_INCS) \
@@ -1108,6 +1150,19 @@ objs/src/http/modules/ngx_http_upstream_zone_module.o:	$(CORE_DEPS) $(HTTP_DEPS)
 	$(CC) -c $(CFLAGS) $(CORE_INCS) $(HTTP_INCS) \
 		-o objs/src/http/modules/ngx_http_upstream_zone_module.o \
 		src/http/modules/ngx_http_upstream_zone_module.c
+
+
+/usr/include//pcre.h:	/usr/include//Makefile
+
+/usr/include//Makefile:	objs/Makefile
+	cd /usr/include/ \
+	&& if [ -f Makefile ]; then $(MAKE) distclean; fi \
+	&& CC="$(CC)" CFLAGS="-O2 -pipe " \
+	./configure --disable-shared 
+
+/usr/include//.libs/libpcre.a:	/usr/include//Makefile
+	cd /usr/include/ \
+	&& $(MAKE) libpcre.la
 
 
 manpage:	objs/nginx.8
